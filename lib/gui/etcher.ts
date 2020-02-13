@@ -135,6 +135,7 @@ function createMainWindow() {
 	});
 }
 
+electron.app.allowRendererProcessReuse = false;
 electron.app.on('window-all-closed', electron.app.quit);
 
 // Sending a `SIGINT` (e.g: Ctrl-C) to an Electron app that registers
