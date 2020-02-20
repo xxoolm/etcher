@@ -33,19 +33,21 @@ const theme = {
 			opacity: 1,
 		},
 		extend: () => `
-      width: 200px;
-      height: 48px;
-      font-size: 16px;
+      && {
+				width: 200px;
+				height: 48px;
+				font-size: 16px;
 
-      &:disabled {
-        background-color: ${colors.dark.disabled.background};
-        color: ${colors.dark.disabled.foreground};
-        opacity: 1;
+				&:disabled {
+					background-color: ${colors.dark.disabled.background};
+					color: ${colors.dark.disabled.foreground};
+					opacity: 1;
 
-        &:hover {
-          background-color: ${colors.dark.disabled.background};
-          color: ${colors.dark.disabled.foreground};
-        }
+					&:hover {
+						background-color: ${colors.dark.disabled.background};
+						color: ${colors.dark.disabled.foreground};
+					}
+				}
       }
     `,
 	},
@@ -54,10 +56,6 @@ const theme = {
 export const ThemedProvider = (props: any) => (
 	<Provider theme={theme} {...props}></Provider>
 );
-
-export const BaseButton = styled(Button)`
-	height: 48px;
-`;
 
 export const IconButton = styled(props => <Button plain {...props} />)`
 	&&& {
@@ -79,22 +77,27 @@ export const StepButton = styled((props: ButtonProps) => (
 	margin: auto;
 `;
 
-export const ChangeButton = styled(BaseButton)`
-	color: ${colors.primary.background};
-	padding: 0;
-	width: 100%;
-	height: auto;
+export const ChangeButton = styled(Button)`
+	&& {
+		border-radius: 24px;
+		color: ${colors.primary.background};
+		padding: 0;
+		height: 18px;
+		font-size: 14px;
 
-	&:enabled {
-		&:hover,
-		&:focus,
-		&:active {
-			color: #8f9297;
+		&:enabled {
+			&:hover,
+			&:focus,
+			&:active {
+				color: #8f9297;
+			}
 		}
+		${space}
 	}
-	${space}
 `;
-export const StepNameButton = styled(BaseButton)`
+export const StepNameButton = styled(Button)`
+	border-radius: 24px;
+	margin: auto;
 	display: flex;
 	justify-content: center;
 	align-items: center;

@@ -15,9 +15,9 @@
  */
 
 import * as React from 'react';
+import { Button } from 'rendition';
 import styled from 'styled-components';
 import { position, right } from 'styled-system';
-import { BaseButton, ThemedProvider } from '../../styled-components';
 
 const Div = styled.div<any>`
 	${position}
@@ -30,15 +30,13 @@ export interface FlashAnotherProps {
 
 export const FlashAnother = (props: FlashAnotherProps) => {
 	return (
-		<ThemedProvider>
-			<Div position="absolute" right="152px">
-				<BaseButton
-					primary
-					onClick={props.onClick.bind(null, { preserveImage: true })}
-				>
-					Flash Another
-				</BaseButton>
-			</Div>
-		</ThemedProvider>
+		<Div position="absolute" right="152px">
+			<Button
+				primary
+				onClick={props.onClick.bind(null, { preserveImage: true })}
+			>
+				Flash Another
+			</Button>
+		</Div>
 	);
 };
