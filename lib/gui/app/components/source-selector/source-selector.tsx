@@ -109,15 +109,11 @@ const URLSelector = ({ done }: { done: (imageURL: string) => void }) => {
 	] = React.useState([]);
 	React.useEffect(() => {
 		const fetchRecentUrlImages = async () => {
-			try {
-				const recentUrlImages: string[] = await getRecentUrlImages();
-				if (!Array.isArray(recentUrlImages)) {
-					setRecentImages([]);
-				} else {
-					setRecentImages(recentUrlImages);
-				}
-			} catch (err) {
-				console.error(err);
+			const recentUrlImages: string[] = await getRecentUrlImages();
+			if (!Array.isArray(recentUrlImages)) {
+				setRecentImages([]);
+			} else {
+				setRecentImages(recentUrlImages);
 			}
 		};
 		fetchRecentUrlImages();
@@ -228,7 +224,6 @@ export class SourceSelector extends React.Component<
 > {
 	private unsubscribe: () => void;
 	private afterSelected: SourceSelectorProps['afterSelected'];
-	private flows: Flow[];
 
 	constructor(props: SourceSelectorProps) {
 		super(props);
@@ -245,19 +240,6 @@ export class SourceSelector extends React.Component<
 		this.onDrop = this.onDrop.bind(this);
 		this.showSelectedImageDetails = this.showSelectedImageDetails.bind(this);
 		this.afterSelected = props.afterSelected.bind(this);
-
-		this.flows = [
-			{
-				onClick: this.openImageSelector,
-				label: 'Flash from file',
-				icon: <FontAwesomeIcon icon={faFile} />,
-			},
-			{
-				onClick: this.openURLSelector,
-				label: 'Flash from URL',
-				icon: <FontAwesomeIcon icon={faLink} />,
-			},
-		];
 	}
 
 	public componentDidMount() {
@@ -545,9 +527,24 @@ export class SourceSelector extends React.Component<
 							</>
 						) : (
 							<StepSelection>
-								{_.map(this.flows, flow => {
-									return <FlowSelector key={flow.label} flow={flow} />;
-								})}
+								<FlowSelector
+									key="Flash from file"
+									flow={{
+										onClick: this.openImageSelector,
+										label: 'Flash from file',
+										icon: <FontAwesomeIcon icon={faFile} />,
+									}}
+								/>
+								;
+								<FlowSelector
+									key="Flash from URL"
+									flow={{
+										onClick: this.openURLSelector,
+										label: 'Flash from URL',
+										icon: <FontAwesomeIcon icon={faLink} />,
+									}}
+								/>
+								;
 							</StepSelection>
 						)}
 					</div>
