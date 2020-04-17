@@ -277,6 +277,10 @@ function storeReducer(
 				.set('isFlashing', false)
 				.set('flashState', DEFAULT_STATE.get('flashState'))
 				.set('flashResults', DEFAULT_STATE.get('flashResults'))
+				.set(
+					'lastAverageFlashingSpeed',
+					DEFAULT_STATE.get('lastAverageFlashingSpeed'),
+				)
 				.delete('flashUuid');
 		}
 
@@ -341,10 +345,6 @@ function storeReducer(
 			return state
 				.set('isFlashing', false)
 				.set('flashResults', Immutable.fromJS(action.data))
-				.set(
-					'lastAverageFlashingSpeed',
-					DEFAULT_STATE.get('lastAverageFlashingSpeed'),
-				)
 				.set('flashState', DEFAULT_STATE.get('flashState'));
 		}
 

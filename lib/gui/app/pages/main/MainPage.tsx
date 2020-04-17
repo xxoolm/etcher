@@ -250,7 +250,12 @@ export class MainPage extends React.Component<
 		} else if (this.state.current === 'success') {
 			return (
 				<div className="section-loader isFinish">
-					<FinishPage goToMain={() => this.setState({ current: 'main' })} />
+					<FinishPage
+						goToMain={() => {
+							flashState.resetState();
+							this.setState({ current: 'main' });
+						}}
+					/>
 					<SafeWebview src="https://www.balena.io/etcher/success-banner/" />
 				</div>
 			);

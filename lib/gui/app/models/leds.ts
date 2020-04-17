@@ -14,14 +14,9 @@
  * limitations under the License.
  */
 
-import {
-	AnimationFunction,
-	blinkWhite,
-	breatheGreen,
-	Color,
-	RGBLed,
-} from 'sys-class-rgb-led';
+import { AnimationFunction, Color, RGBLed } from 'sys-class-rgb-led';
 
+import { isSourceDrive } from '../../../shared/drive-constraints';
 import * as settings from './settings';
 import { observe } from './store';
 
@@ -43,22 +38,102 @@ function setLeds(
 	}
 }
 
+const red: Color = [1, 0, 0];
+const green: Color = [0, 1, 0];
+const blue: Color = [0, 0, 1];
+const white: Color = [1, 1, 1];
+const black: Color = [0, 0, 0];
+
+function breatheBlue(t: number): Color {
+	const intensity = (1 + Math.sin(t / 1000)) / 2;
+	return [0, 0, intensity];
+}
+
+function blinkGreen(t: number): Color {
+	const intensity = Math.floor(t / 1000) % 2;
+	return [0, intensity, 0];
+}
+
+function blinkPurple(t: number): Color {
+	const intensity = Math.floor(t / 1000) % 2;
+	return [intensity / 2, 0, intensity];
+}
+
+// Source slot (1st slot): behaves as a target unless it is chosen as source
+//  No drive: black
+//  Drive plugged: blue - on
+//
+// Other slots (2 - 16):
+//
+// +----------------+---------------+----------------------------+-----------------------------+---------------------------------+
+// |                | main screen   | flashing                   | validating                  | results screen                  |
+// +----------------+---------------+----------------------------+-----------------------------+---------------------------------+
+// | no drive       | black         | black                      | black                       | black                           |
+// +----------------+---------------+----------------------------+-----------------------------+---------------------------------+
+// | drive plugged  | black         | black                      | black                       | black                           |
+// +----------------+---------------+----------------------------+-----------------------------+---------------------------------+
+// | drive selected | white         | blink green, red if failed | blink purple, red if failed | green if success, red if failed |
+// +----------------+---------------+----------------------------+-----------------------------+---------------------------------+
 export function updateLeds(
+	step: 'main' | 'flashing' | 'verifying' | 'finish',
+	sourceDrivePath: string | undefined,
 	availableDrives: string[],
 	selectedDrives: string[],
+	failedDrives: string[],
 ) {
-	const off = new Set(leds.keys());
-	const available = new Set(availableDrives);
-	const selected = new Set(selectedDrives);
-	for (const s of selected) {
-		available.delete(s);
+	const unplugged = new Set(leds.keys());
+	const plugged = new Set(availableDrives);
+	const selectedOk = new Set(selectedDrives);
+	const selectedFailed = new Set(failedDrives);
+
+	// Remove selected devices from plugged set
+	for (const d of selectedOk) {
+		plugged.delete(d);
 	}
-	for (const a of available) {
-		off.delete(a);
+
+	// Remove plugged devices from unplugged set
+	for (const d of plugged) {
+		unplugged.delete(d);
 	}
-	setLeds(off, [0, 0, 0]);
-	setLeds(available, breatheGreen);
-	setLeds(selected, blinkWhite);
+
+	// Remove failed devices from selected set
+	for (const d of selectedFailed) {
+		selectedOk.delete(d);
+	}
+
+	// Handle source slot
+	if (sourceDrivePath !== undefined) {
+		if (unplugged.has(sourceDrivePath)) {
+			unplugged.delete(sourceDrivePath);
+			setLeds(new Set([sourceDrivePath]), breatheBlue);
+		} else if (plugged.has(sourceDrivePath)) {
+			plugged.delete(sourceDrivePath);
+			setLeds(new Set([sourceDrivePath]), blue);
+		}
+	}
+	console.log('step', step, unplugged, plugged, selectedOk, selectedFailed);
+
+	if (step === 'main') {
+		setLeds(unplugged, black);
+		setLeds(plugged, black);
+		setLeds(selectedOk, white);
+		setLeds(selectedFailed, white);
+	} else if (step === 'flashing') {
+		setLeds(unplugged, black);
+		setLeds(plugged, black);
+		setLeds(selectedOk, blinkGreen);
+		setLeds(selectedFailed, red);
+	} else if (step === 'verifying') {
+		setLeds(unplugged, black);
+		setLeds(plugged, black);
+		setLeds(selectedOk, blinkPurple);
+		setLeds(selectedFailed, red);
+	} else if (step === 'finish') {
+		setLeds(unplugged, black);
+		setLeds(plugged, black);
+		setLeds(selectedOk, green);
+		setLeds(selectedFailed, red);
+	}
 }
 
 interface DeviceFromState {
@@ -82,18 +157,40 @@ export function init() {
 		leds.set('/dev/disk/by-path/' + drivePath, new RGBLed(ledsNames));
 	}
 	observe(state => {
-		const availableDrives = state
-			.get('availableDrives')
-			.toJS()
-			.filter((d: DeviceFromState) => d.devicePath);
+		const s = state.toJS();
+		let step: 'main' | 'flashing' | 'verifying' | 'finish';
+		if (s.isFlashing) {
+			step = s.flashState.flashing > 0 ? 'flashing' : 'verifying';
+		} else {
+			step = s.lastAverageFlashingSpeed == null ? 'main' : 'finish';
+		}
+		console.log('new state', s);
+		const availableDrives = s.availableDrives.filter(
+			(d: DeviceFromState) => d.devicePath,
+		);
+		const sourceDrivePath = availableDrives.filter(isSourceDrive)[0]
+			?.devicePath;
 		const availableDrivesPaths = availableDrives.map(
 			(d: DeviceFromState) => d.devicePath,
 		);
-		// like /dev/sda
-		const selectedDrivesDevices = state.getIn(['selection', 'devices']).toJS();
-		const selectedDrivesPaths = availableDrives
-			.filter((d: DeviceFromState) => selectedDrivesDevices.includes(d.device))
-			.map((d: DeviceFromState) => d.devicePath);
-		updateLeds(availableDrivesPaths, selectedDrivesPaths);
+		function getDrivesPaths(drives: string[]): string[] {
+			return availableDrives
+				.filter((d: DeviceFromState) => drives.includes(d.device))
+				.map((d: DeviceFromState) => d.devicePath);
+		}
+		// s.selection.devices is a list of strings like "/dev/sda"
+		const selectedDrivesPaths = getDrivesPaths(s.selection.devices);
+		const failedDrives =
+			s.flashResults?.results?.errors?.map(
+				(e: { device: string }) => e.device,
+			) || [];
+		const failedDrivesPaths = getDrivesPaths(failedDrives);
+		updateLeds(
+			step,
+			sourceDrivePath,
+			availableDrivesPaths,
+			selectedDrivesPaths,
+			failedDrivesPaths,
+		);
 	});
 }
