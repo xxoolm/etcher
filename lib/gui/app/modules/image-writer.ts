@@ -169,7 +169,11 @@ export function performWrite(
 			trim: settings.get('trim'),
 		};
 
-		ipc.server.on('fail', ({ error }) => {
+		ipc.server.on('fail', ({ device, error }) => {
+			if (device.devicePath) {
+				flashState.addFailedDevicePath(device.devicePath);
+			}
+			console.log('errrrr', device, error);
 			handleErrorLogging(error, analyticsData);
 		});
 
@@ -258,6 +262,9 @@ export async function flash(
 	}
 
 	flashState.setFlashingFlag();
+	flashState.setDevicePaths(
+		drives.map(d => d.devicePath).filter(p => p != null) as string[],
+	);
 
 	const analyticsData = {
 		image,

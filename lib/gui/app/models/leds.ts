@@ -25,6 +25,7 @@ const leds: Map<string, RGBLed> = new Map();
 function setLeds(
 	drivesPaths: Set<string>,
 	colorOrAnimation: Color | AnimationFunction,
+	frequency?: number,
 ) {
 	for (const path of drivesPaths) {
 		const led = leds.get(path);
@@ -32,7 +33,7 @@ function setLeds(
 			if (Array.isArray(colorOrAnimation)) {
 				led.setStaticColor(colorOrAnimation);
 			} else {
-				led.setAnimation(colorOrAnimation);
+				led.setAnimation(colorOrAnimation, frequency);
 			}
 		}
 	}
@@ -105,7 +106,8 @@ export function updateLeds(
 	if (sourceDrivePath !== undefined) {
 		if (unplugged.has(sourceDrivePath)) {
 			unplugged.delete(sourceDrivePath);
-			setLeds(new Set([sourceDrivePath]), breatheBlue);
+			// TODO
+			setLeds(new Set([sourceDrivePath]), breatheBlue, 2);
 		} else if (plugged.has(sourceDrivePath)) {
 			plugged.delete(sourceDrivePath);
 			setLeds(new Set([sourceDrivePath]), blue);
@@ -121,12 +123,12 @@ export function updateLeds(
 	} else if (step === 'flashing') {
 		setLeds(unplugged, black);
 		setLeds(plugged, black);
-		setLeds(selectedOk, blinkGreen);
+		setLeds(selectedOk, blinkGreen, 2);
 		setLeds(selectedFailed, red);
 	} else if (step === 'verifying') {
 		setLeds(unplugged, black);
 		setLeds(plugged, black);
-		setLeds(selectedOk, blinkPurple);
+		setLeds(selectedOk, blinkPurple, 2);
 		setLeds(selectedFailed, red);
 	} else if (step === 'finish') {
 		setLeds(unplugged, black);
@@ -160,7 +162,7 @@ export function init() {
 		const s = state.toJS();
 		let step: 'main' | 'flashing' | 'verifying' | 'finish';
 		if (s.isFlashing) {
-			step = s.flashState.flashing > 0 ? 'flashing' : 'verifying';
+			step = s.flashState.type;
 		} else {
 			step = s.lastAverageFlashingSpeed == null ? 'main' : 'finish';
 		}
@@ -170,27 +172,16 @@ export function init() {
 		);
 		const sourceDrivePath = availableDrives.filter(isSourceDrive)[0]
 			?.devicePath;
+		console.log('source drive', sourceDrivePath);
 		const availableDrivesPaths = availableDrives.map(
 			(d: DeviceFromState) => d.devicePath,
 		);
-		function getDrivesPaths(drives: string[]): string[] {
-			return availableDrives
-				.filter((d: DeviceFromState) => drives.includes(d.device))
-				.map((d: DeviceFromState) => d.devicePath);
-		}
-		// s.selection.devices is a list of strings like "/dev/sda"
-		const selectedDrivesPaths = getDrivesPaths(s.selection.devices);
-		const failedDrives =
-			s.flashResults?.results?.errors?.map(
-				(e: { device: string }) => e.device,
-			) || [];
-		const failedDrivesPaths = getDrivesPaths(failedDrives);
 		updateLeds(
 			step,
 			sourceDrivePath,
 			availableDrivesPaths,
-			selectedDrivesPaths,
-			failedDrivesPaths,
+			s.devicePaths,
+			s.failedDevicePaths,
 		);
 	});
 }
