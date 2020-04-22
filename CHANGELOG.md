@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+# v1.5.82
+## (2020-04-22)
+
+* Add generic error's message [Lorenzo Alberto Maria Ambrosi]
+* Refactor buttons style [Lorenzo Alberto Maria Ambrosi]
+* Add flash from url workflow [Lorenzo Alberto Maria Ambrosi]
+
 # v1.5.81
 ## (2020-04-14)
 
