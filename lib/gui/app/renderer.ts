@@ -1,10 +1,9 @@
 // @ts-nocheck
 import { main } from './app';
+import './i18n';
+import { langParser } from './i18n';
+import { ipcRenderer } from 'electron';
 
-if (module.hot) {
-	module.hot.accept('./app', () => {
-		main();
-	});
-}
+ipcRenderer.send('change-lng', langParser());
 
 main();

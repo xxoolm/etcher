@@ -14,18 +14,19 @@
  * limitations under the License.
  */
 
-import * as _ from 'lodash';
 import * as React from 'react';
+import type {
+	FlexProps,
+	ButtonProps,
+	TableProps as BaseTableProps,
+} from 'rendition';
 import {
 	Alert as AlertBase,
 	Flex,
-	FlexProps,
 	Button,
-	ButtonProps,
 	Modal as ModalBase,
 	Provider,
 	Table as BaseTable,
-	TableProps as BaseTableProps,
 	Txt,
 } from 'rendition';
 import styled, { css } from 'styled-components';
@@ -113,14 +114,25 @@ export const DetailsText = (props: FlexProps) => (
 
 const modalFooterShadowCss = css`
 	overflow: auto;
-	background: 0, linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%, 0,
+	background:
+		0,
+		linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%,
+		0,
 		linear-gradient(rgba(255, 255, 255, 0), rgba(221, 225, 240, 0.5) 70%) 0 100%;
 	background-repeat: no-repeat;
-	background-size: 100% 40px, 100% 40px, 100% 8px, 100% 8px;
+	background-size:
+		100% 40px,
+		100% 40px,
+		100% 8px,
+		100% 8px;
 
 	background-repeat: no-repeat;
 	background-color: white;
-	background-size: 100% 40px, 100% 40px, 100% 8px, 100% 8px;
+	background-size:
+		100% 40px,
+		100% 40px,
+		100% 8px,
+		100% 8px;
 	background-attachment: local, local, scroll, scroll;
 `;
 
@@ -142,7 +154,7 @@ export const Modal = styled(({ style, children, ...props }) => {
 			{...props}
 		>
 			<ScrollableFlex flexDirection="column" width="100%" height="90%">
-				{...children}
+				{children.length ? children.map((c: any) => <>{c}</>) : children}
 			</ScrollableFlex>
 		</ModalBase>
 	);
@@ -236,16 +248,15 @@ export interface GenericTableProps<T> extends BaseTableProps<T> {
 	showWarnings?: boolean;
 }
 
-const GenericTable: <T>(
+function GenericTable<T>(
 	props: GenericTableProps<T>,
-) => React.ReactElement<GenericTableProps<T>> = <T extends {}>({
-	refFn,
-	...props
-}: GenericTableProps<T>) => (
-	<div>
-		<BaseTable<T> ref={refFn} {...props} />
-	</div>
-);
+): React.ReactElement<GenericTableProps<T>> {
+	return (
+		<div>
+			<BaseTable<T> ref={props.refFn} {...props} />
+		</div>
+	);
+}
 
 function StyledTable<T>() {
 	return styled((props: GenericTableProps<T>) => (
@@ -284,7 +295,6 @@ function StyledTable<T>() {
 		[data-display='table-body'] > [data-display='table-row'] {
 			> [data-display='table-cell']:first-child {
 				padding-left: 15px;
-				width: 6%;
 			}
 
 			> [data-display='table-cell']:last-child {
@@ -319,7 +329,7 @@ function StyledTable<T>() {
 	`;
 }
 
-export const Table = <T extends {}>(props: GenericTableProps<T>) => {
+export const Table = <T extends object>(props: GenericTableProps<T>) => {
 	const TypedStyledFunctional = StyledTable<T>();
 	return <TypedStyledFunctional {...props} />;
 };

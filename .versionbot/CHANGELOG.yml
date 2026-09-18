@@ -1,4 +1,2329 @@
 - commits:
+    - subject: "patch: macos hardening"
+      hash: 26ad031b49ca98a629933cf597b09cc88cdbd5df
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+    - subject: "patch: fix copyright"
+      hash: 507fd3e9c7499e4005114c77bc2fbb9ea64c1f81
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 2.1.7
+  title: ""
+  date: 2026-09-18T13:52:02.135Z
+- commits:
+    - subject: Fix MacOS x86 build by switching to the macos-14-large GH runner
+      hash: faab6b2fb0aef21f78d9a84240a0032327e1f9d9
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        See: https://balena.fibery.io/Work/Project/2581
+        see: https://balena.fibery.io/Work/Project/2581
+      author: Thodoris Greasidis
+      nested: []
+  version: 2.1.6
+  title: ""
+  date: 2026-05-13T16:39:40.430Z
+- commits:
+    - subject: Replace the EOL macos-13 test runners with macos-14
+      hash: 835222525f77279e0858328a57390de3bb761805
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        See: https://github.blog/changelog/2025-09-19-github-actions-macos-13-runner-image-is-closing-down/
+        see: https://github.blog/changelog/2025-09-19-github-actions-macos-13-runner-image-is-closing-down/
+      author: Thodoris Greasidis
+      nested: []
+    - subject: Add libgdk-pixbuf dependency alternatives to fix Ubuntu 26.04
+        installation
+      hash: ccf063f9cb5d7ab8c2503c98adbe1439f7d0ab95
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Thodoris Greasidis
+      nested: []
+  version: 2.1.5
+  title: ""
+  date: 2026-05-07T12:55:07.475Z
+- commits:
+    - subject: "patch: fix ubuntu 24 build and flash issues - bump electron-forge to
+        7.8.1 - bump electron to 37.2.4 - stop producing broken appimage"
+      hash: c824a60e5dc9a78b92679fa8915e3ddad4127c05
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+    - subject: "patch: fix windows build and flash issues - downgrade flasher's node
+        to 20.11.1 on windows - bump windows GHA runner to 2022 - bump
+        winusb-driver-generator to 2.1.9"
+      hash: 2a470f5e6c864ea161188f1e1a01d4baeba6c310
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+    - subject: "patch: refactor permission code"
+      hash: f3123f3cbe0159c624412ec2f162d01e079d314e
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 2.1.4
+  title: ""
+  date: 2025-07-29T12:17:33.739Z
+- commits:
+    - subject: Remove stale secrets
+      hash: c2fc36971c9460eac6bd02cfc7bdcabec7b97a6d
+      body: ""
+      footer:
+        change-type: patch
+      author: Anton Belodedenko
+      nested: []
+  version: 2.1.3
+  title: ""
+  date: 2025-05-15T18:09:55.848Z
+- commits:
+    - subject: "patch: remove analytics"
+      hash: aa6d526fea010d181f49dd81ae3bdaefb8d1938e
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 2.1.2
+  title: ""
+  date: 2025-05-08T08:51:44.810Z
+- commits:
+    - subject: "patch: fix signin windows artifacts"
+      hash: a1e9be2f94629447e02994e52e12c67ec98de831
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 2.1.1
+  title: ""
+  date: 2025-05-05T17:19:50.443Z
+- commits:
+    - subject: Add informational notice about how to disable analytics collection
+      hash: aac092fd4df8750024c082b25dcbd0ae6ee618fd
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: myarmolinsky
+      nested: []
+  version: 2.1.0
+  title: ""
+  date: 2025-02-27T16:16:57.036Z
+- commits:
+    - subject: "major: build on ubuntu 22 and macos 13"
+      hash: 039a022353d1980ef9ddd19166515c531e48aba4
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 2.0.0
+  title: ""
+  date: 2025-02-20T14:27:01.338Z
+- commits:
+    - subject: "patch: bump etcher-sdk to 9.1.2"
+      hash: c726b51dca3383c76f4bf824fd5d594ac3069180
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 1.19.25
+  title: ""
+  date: 2024-10-10T10:03:29.519Z
+- commits:
+    - subject: "patch: etcher-util is corrupted in RPM package"
+      hash: e43ee788ec5ec49e105ff804206919bb10a59ea7
+      body: |
+        rpmbuild strips executables by default when generating an rpm packge.
+        This was causing the JavaScript code bundled in the etcher-util file
+        to be removed, causing "Pkg: Error reading from file." whenever
+        etcher-util was called.
+
+        This in turn caused balena-etcher to generate the error message
+        `Error: (0, h.requestMetadata) is not a function` when attempting
+        to write an SD card.
+
+        This fixes the issue for RPM builds by replacing the `strip` command
+        with `true` so that rpmbuild no longer strips the executables and
+        the embeded code stays intact.
+
+        See: https://github.com/balena-io/etcher/issues/4150
+      footer:
+        Signed-off-by: Richard Glidden <richard@glidden.org>
+        signed-off-by: Richard Glidden <richard@glidden.org>
+      author: Richard Glidden
+      nested: []
+  version: 1.19.24
+  title: ""
+  date: 2024-10-09T14:22:56.623Z
+- commits:
+    - subject: "patch: remove gconf2 libgconf-2-4 deps"
+      hash: 2ed779ef371db367e4e413c9d0d08fcd738edb5b
+      body: "Closes #4096"
+      footer: {}
+      author: Marc-Aurèle Brothier
+      nested: []
+  version: 1.19.23
+  title: ""
+  date: 2024-10-09T13:52:54.936Z
+- commits:
+    - subject: Replace deprecated Flowzone inputs
+      hash: 52d396aa7ea9ae1ef6d68151f582f04f57191b14
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Kyle Harding
+      nested: []
+  version: 1.19.22
+  title: ""
+  date: 2024-07-18T18:12:56.368Z
+- commits:
+    - subject: "patch: fix missing windows dependency"
+      hash: 8dad81ae34b8d71f3d4f7151ee60717e6207ccd8
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+    - subject: "patch: fix missing windows dependency"
+      hash: d28719daf249f2994acdf94b4bb7ea937ffcab9b
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+    - subject: "patch: fix missing windows dependency"
+      hash: 98db4df0dc147e5fec9180c50f4e21acf1fd0a58
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 1.19.21
+  title: ""
+  date: 2024-05-30T15:00:35.706Z
+- commits:
+    - subject: "patch: fix missing windows dependency"
+      hash: c4d3f8db8769418925a9909ac700edc5f425a068
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 1.19.20
+  title: ""
+  date: 2024-05-30T10:17:29.075Z
+- commits:
+    - subject: "patch: add sentry debug flag"
+      hash: 8223130e8dfce180481550d77f022064255601e4
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 1.19.19
+  title: ""
+  date: 2024-05-28T12:09:51.167Z
+- commits:
+    - subject: "patch: fix Sentry DSN for main process"
+      hash: 4ffda6e208a6e2f109f652d39e1248bec23a2ddf
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 1.19.18
+  title: ""
+  date: 2024-05-22T13:28:03.659Z
+- commits:
+    - subject: "patch: fix injection of analytics key at build time"
+      hash: e94767aca7b07e674bd60176ef77c11440131ace
+      body: ""
+      footer: {}
+      author: JOASSART Edwin
+      nested: []
+  version: 1.19.17
+  title: ""
+  date: 2024-05-09T06:33:45.091Z
+- commits:
+    - subject: "patch: hold request for metadata while waiting for flasher"
+      hash: 2dfa795129e287f887b9ea02f2eca717575d27ac
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 1.19.16
+  title: ""
+  date: 2024-04-26T14:33:19.111Z
+- commits:
+    - subject: "patch: bump etcher-sdk to 9.0.11 to fix url loading using http/2"
+      hash: cb03fb83754f38d647fc951b94470725b46b2b31
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 1.19.15
+  title: ""
+  date: 2024-04-26T13:26:57.047Z
+- commits:
+    - subject: "patch: pretty-bytes to 6.1.1"
+      hash: fa642270f7153f14e45ee03a73bad1f0797cbd51
+      body: ""
+      footer: {}
+      author: JOASSART Edwin
+      nested: []
+  version: 1.19.14
+  title: ""
+  date: 2024-04-25T21:11:35.350Z
+- commits:
+    - subject: "patch: use etcher icon as loading for windows installer"
+      hash: bc3340960a765e99f2f02bc21adace91d228d26f
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+    - subject: "patch: fix windows squirrel install"
+      hash: d498248a0f1416045b836646b72c7b4c588119d3
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 1.19.13
+  title: ""
+  date: 2024-04-25T19:02:23.576Z
+- commits:
+    - subject: "patch: bump minors & patch"
+      hash: afd659f9e586e012be7e3b02490d14a8ac64bb35
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+    - subject: "patch: bump @electron-forge/* to 7.4.0"
+      hash: ffdeccf7efd1412a2e2838fd07df5b21f1233efe
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+    - subject: "patch: bump electron to 30.0.1 & @electron/remote to 2.1.2"
+      hash: 37ac323e10c07db35a7e47b576d07e1d4d41a470
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+    - subject: "patch: npm upgrade"
+      hash: 7c8f3c35d3d159e7be73442ab215019dc2388f54
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+    - subject: "patch: bump @balena/lint to 8.0.2 and fix formating"
+      hash: 4aa4140d65189920938c42c41a6a781c97148c8a
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+    - subject: "patch: fix pretty-bytes imports"
+      hash: 064261107954dd64d03f94d6aeffd95cd2211df0
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+    - subject: "patch: bump etcher-sdk to 9.0.9"
+      hash: 2f4a12a48facf0634ed457fe6ed7c50e21b419ee
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 1.19.12
+  title: ""
+  date: 2024-04-25T16:47:43.024Z
+- commits:
+    - subject: "patch: setup wdio and port (most) tests"
+      hash: a661d102bc94bf2707f01958d1e9d260efc06c14
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 1.19.11
+  title: ""
+  date: 2024-04-25T13:00:13.805Z
+- commits:
+    - subject: "patch: remove node-ipc and tests"
+      hash: ccc31bb9aaba8df88b2af612824d9106051e2804
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+    - subject: "patch: switch api; use ws; integrate sudo-prompt - switch api roles
+        flow - use websocket instead of node-ipc - integrate; modernize;
+        simplify and deprecate sudo-prompt"
+      hash: b3e33824ed1f70719b04f18dcb7f7dd76451b7f6
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+    - subject: "patch: refactor api to use a single topic"
+      hash: 6582260355fcc5280932bee771602fbfb5190619
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+    - subject: "patch: set require node engine to 20"
+      hash: b1d2bdaa06bfb35f4a66d92275ca21c731d1cf8e
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 1.19.10
+  title: ""
+  date: 2024-04-23T10:28:00.127Z
+- commits:
+    - subject: "patch: prevent rebuild of native deps by @electron/rebuild"
+      hash: 003abfb88f2c7bff0ee291828f3815c738340afa
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 1.19.9
+  title: ""
+  date: 2024-04-22T10:20:10.534Z
+- commits:
+    - subject: "patch: replace deprecated pkg with yao-pkg and bump etcher-util node v
+        to 20.10"
+      hash: c696c389c9988c75ad9ccc472bdac7edefe762ed
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 1.19.8
+  title: ""
+  date: 2024-04-22T09:37:37.561Z
+- commits:
+    - subject: "patch: fix formating"
+      hash: 1a9a3d2cdc5642a754b73628f4ae2636e3ffd8eb
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+    - subject: "patch: configure prettier in the project to use balena-lint
+        configuration"
+      hash: faeaa58ec548e47abaf30b2498ab145e7c0c6f76
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 1.19.7
+  title: ""
+  date: 2024-04-22T06:52:18.878Z
+- commits:
+    - subject: "patch: fix win signature process"
+      hash: f629e6d53b5329cd7e8105050df042f3873a35ee
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 1.19.6
+  title: ""
+  date: 2024-04-19T15:59:28.200Z
+- commits:
+    - subject: Replace deprecated flowzone input tests_run_on
+      hash: bec0e50741bfeda63ca9785217576613f74ca043
+      body: |
+        The `custom_runs_on` array supports multiple runner labels
+        in nested arrays.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+  version: 1.19.5
+  title: ""
+  date: 2024-02-14T19:51:16.321Z
+- commits:
+    - subject: "patch: remove screensaver error when not on etcher-pro"
+      hash: 196fd8ae24de2a23ebaeae736c6ca41007162fa1
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+    - subject: "patch: fix typo in IPC server id"
+      hash: 5d436992423961258ad861c01e3b9b30f3317aab
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 1.19.4
+  title: ""
+  date: 2024-01-26T17:29:27.301Z
+- commits:
+    - subject: Update dependencies
+      hash: 0f2b4dbc106c55fe104f0b10e62c35c16bcfe9b3
+      body: >
+        - upgrade pretty_bytes to 6.1.1
+
+        - upgrade electron-remote to 2.1.0
+
+        - upgrade semver to 7.5.4 + @types/semver to 7.5.6
+
+        - upgrade chai to 4.3.11 + @types/chai to 4.3.10
+
+        - upgrade mocha to 10.2.0 + @types/mocha to 10.0.6
+
+        - upgrade sinon to 17.0.1 + @types/sinon to 17.0.2
+
+        - remove useless @types
+
+        - upgrade @svgr/webpack to 8.1.0
+
+        - upgrade @sentry/electron to 4.15.1
+
+        - upgrade tslib to 2.6.2
+
+        - upgrade immutable to 4.3.4
+
+        - upgrade redux to 4.2.1
+
+        - upgrade ts-node to 10.9.2 & ts-loader to 9.5.1
+
+        - remove mini-css-extract-plugin
+
+        - upgrade husky to 8.0.3
+
+        - upgrade uuid to 9.0.1
+
+        - upgrade lint-staged to 15.2.1
+
+        - upgrade @types/node to 18.11.9
+
+        - upgrade @fortawesome/fontawesome-free to 6.5.1
+
+        - upgrade i18next to 23.7.8 & react-i18next to 11.18.6
+
+        - bump react, react-dom + related @types to 17.0.2 and rendition to
+        35.1.0
+
+        - fix getuid for ts
+
+        - fix @types/react being in wrong deps
+
+        - upgrade @types/tmp to 0.2.6
+
+        - upgrade typescript to 5.3.3
+
+        - upgrade @types/mime-types to 2.1.4
+
+        - remove d3 from deps
+
+        - upgrade electron-updater to 6.1.7
+
+        - upgrade rendition to 35.1.2
+
+        - upgrade node-ipc to 9.2.3
+
+        - upgrade @types/node-ipc to 9.2.3
+
+        - upgrade electron to 27.1.3
+
+        - upgrade @electron-forge/* to 7.2.0
+
+        - upgrade @reforged/marker-appimage to 3.3.2
+
+        - upgrade style-loader to 3.3.3
+
+        - upgrade balena-lint to 7.2.4
+
+        - run CI with node 18.19
+
+        - add xxhash-addon to sidecar assets
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Edwin Joassart
+      nested: []
+  version: 1.19.3
+  title: ""
+  date: 2023-12-22T16:13:00.924Z
+- commits:
+    - subject: "fix: typos"
+      hash: aaac1336702b7ac4a07992f41db4f0bcdb931c70
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Rotzbua
+      nested: []
+  version: 1.19.2
+  title: ""
+  date: 2023-12-22T12:57:35.441Z
+- commits:
+    - subject: "patch: update winget-releaser v2"
+      hash: ea184eb6352b7988c6ab1f439d30c297610cd84e
+      body: ""
+      footer: {}
+      author: Vedant
+      nested: []
+  version: 1.19.1
+  title: ""
+  date: 2023-12-22T08:12:34.451Z
+- commits:
+    - subject: Use native ARM runner for Apple Silicon builds
+      hash: 01a96bb6de1ff00d20f7784469dd05286069e014
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Akis Kesoglou
+      nested: []
+    - subject: Calculate and upload build artifact sha256 checksums
+      hash: 2e3a75e685258961bc8efdb95dde12727b93a04a
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Akis Kesoglou
+      nested: []
+    - subject: Migrate build pipeline to Electron Forge
+      hash: bd33c5b092cb5224c8dfc4d5a2caf4684cee161d
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Akis Kesoglou
+      nested: []
+  version: 1.19.0
+  title: ""
+  date: 2023-12-21T16:41:57.426Z
+- commits:
+    - subject: Remove repo config from flowzone.yml
+      hash: ecb24dad251fbb9b3f92e5b404b66aedd155a584
+      body: |
+        This functionality is being deprecated in Flowzone.
+
+        See: https://github.com/product-os/flowzone/pull/833
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+      author: Kyle Harding
+      nested: []
+    - subject: Update actions/upload-artifact to v4
+      hash: a970f55b555f69c5fcb40374eb50ad7b98cc8f96
+      body: |
+        Also ensure we are generating unique artifact names on upload.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Kyle Harding <kyle@balena.io>
+        signed-off-by: Kyle Harding <kyle@balena.io>
+        See: https://github.com/product-os/flowzone/pull/827
+        see: https://github.com/product-os/flowzone/pull/827
+      author: Kyle Harding
+      nested: []
+  version: 1.18.14
+  title: ""
+  date: 2023-12-20T16:23:00.875Z
+- commits:
+    - subject: "patch: upgrade to electron 25"
+      hash: f38bca290fe26121bed58d1131265e1aa350ddb5
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+    - subject: "patch: refactor scanner, loader and flasher out of gui + upgrade to
+        electron 25"
+      hash: fb8ed5b529e22bc9e766bfe99c2b6955ed695b58
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 1.18.13
+  title: ""
+  date: 2023-10-16T13:32:26.738Z
+- commits:
+    - subject: Update instructions for installing deb file
+      hash: acab03ad77a1c1901d0c8a65999e93c1d27169a0
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Jorge Capona
+      nested: []
+  version: 1.18.12
+  title: ""
+  date: 2023-07-19T10:24:22.407Z
+- commits:
+    - subject: "fix: prevent stealing window focus from auth dialog"
+      hash: f716c74ef7cb164b4d825828e4e46033484ad9af
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: leadpogrommer
+      nested: []
+  version: 1.18.11
+  title: ""
+  date: 2023-07-13T14:31:40.021Z
+- commits:
+    - subject: "spelling: validates"
+      hash: 06d246e3fd1c573b9e04d23ab3bc3c4036fb9859
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Josh Soref <jsoref@users.noreply.github.com>
+        signed-off-by: Josh Soref <jsoref@users.noreply.github.com>
+      author: Josh Soref
+      nested: []
+    - subject: "spelling: undefined"
+      hash: 67b26a5b69f819066c6419d3d915846b63fdbcf0
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Josh Soref <jsoref@users.noreply.github.com>
+        signed-off-by: Josh Soref <jsoref@users.noreply.github.com>
+      author: Josh Soref
+      nested: []
+    - subject: "spelling: except if"
+      hash: b4b9db7ffa2104c19e7bd079e4f394a817f40bc0
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Josh Soref <jsoref@users.noreply.github.com>
+        signed-off-by: Josh Soref <jsoref@users.noreply.github.com>
+      author: Josh Soref
+      nested: []
+  version: 1.18.10
+  title: ""
+  date: 2023-07-12T11:21:59.231Z
+- commits:
+    - subject: Fix opening links from within SafeWebView
+      hash: 497bb0e2cbefad3e9a1188ee5df49cf61f6bd6e4
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Akis Kesoglou
+      nested: []
+  version: 1.18.9
+  title: ""
+  date: 2023-07-12T09:07:17.666Z
+- commits:
+    - subject: "Patch: Fix Support link"
+      hash: 882b385c88111a192e5f37e20c1c8aeca9950b21
+      body: ""
+      footer: {}
+      author: Oliver Plummer
+      nested: []
+  version: 1.18.8
+  title: ""
+  date: 2023-04-26T09:57:46.155Z
+- commits:
+    - subject: "patch: update docs to remove cloudsmith install instructions for linux"
+      hash: 02a406711852cf237e41da4cd39350d8acc1f0b0
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 1.18.7
+  title: ""
+  date: 2023-04-25T15:25:35.584Z
+- commits:
+    - subject: add-flash-with-etcher-to-docs
+      hash: 856b426dc98925f5e339976a5cac144f4bb4ea59
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Lizzie Epton
+      nested: []
+  version: 1.18.6
+  title: ""
+  date: 2023-03-21T13:24:18.265Z
+- commits:
+    - subject: "patch: add apt-get update in flowzone preinstall"
+      hash: 0d9ac710880e6b9413b09e4c35a505034d1e9d51
+      body: libudev package has changed and cannot be installed if we not update apt
+        cache
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 1.18.5
+  title: ""
+  date: 2023-03-09T11:30:34.540Z
+- commits:
+    - subject: "patch: bump etcher-sdk to 8.3.1"
+      hash: bf0360e7f46ac620f95021e0c48a3a04d302e725
+      body: ""
+      footer: {}
+      author: JOASSART Edwin
+      nested: []
+  version: 1.18.4
+  title: ""
+  date: 2023-03-02T17:31:31.788Z
+- commits:
+    - subject: fix-typo
+      hash: 496f131c4b024dfcd17fde5173016f70c0d0599c
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Lizzie Epton
+      nested: []
+    - subject: edits-to-info-about-efp
+      hash: f582b0215c2cf66acf652afdaa47353e1a7eac07
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Lizzie Epton
+      nested: []
+    - subject: Add reference to etcher-efp in publishing.md
+      hash: 4c3c4babea5efdadbed7ba0df85f08b68a7b6f20
+      body: |
+        Add reference to etcher-efp in publishing.md
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Edwin Joassart
+      nested: []
+  version: 1.18.3
+  title: ""
+  date: 2023-02-22T12:12:40.270Z
+- commits:
+    - subject: "patch: organize docs"
+      hash: e479b95d72bed6a50ae6a971598a18d8a7562f0d
+      body: ""
+      footer: {}
+      author: mcraa
+      nested: []
+    - subject: "patch: actualized develop guide"
+      hash: 926ff2b7549d8b187b18ee452ce48c62f6cd3531
+      body: ""
+      footer: {}
+      author: mcraa
+      nested: []
+    - subject: "patch: updated commit message guide"
+      hash: 394b64319de11b1010b8acfe160de13a6f3851cd
+      body: ""
+      footer: {}
+      author: mcraa
+      nested: []
+    - subject: add-item-from-FAQs
+      hash: 96fa53b6ee4ec7a29522df488b927074c0f301ca
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Lizzie Epton
+      nested: []
+    - subject: "patch: removed gt characters from contributing guide"
+      hash: 9b54e2af0b9356bb73e197cccbcc2ff89673361f
+      body: ""
+      footer: {}
+      author: mcraa
+      nested: []
+    - subject: "patch: added docosaurus site name"
+      hash: b01cf3c2e1c3a7a234c8b957bd570ecdca81e0c1
+      body: ""
+      footer: {}
+      author: mcraa
+      nested: []
+  version: 1.18.2
+  title: ""
+  date: 2023-02-21T13:17:09.606Z
+- commits:
+    - subject: "patch: use @electron/remote for locating rpiboot files"
+      hash: 04fa3dcd8c619dce927221cef5799b5210354d2e
+      body: ""
+      footer: {}
+      author: mcraa
+      nested: []
+  version: 1.18.1
+  title: ""
+  date: 2023-02-15T14:54:45.951Z
+- commits:
+    - subject: Update to Electron 19
+      hash: c11db0a2797a6b1093dd3fa6f55bee5f100c6da4
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Akis Kesoglou
+      nested: []
+    - subject: Remove Spectron and related (low-value) tests
+      hash: 6f7570d265e4b457afe832d00e5f45e0bf5a8a53
+      body: >
+        Spectron is long deprecated and abandoned and the browser tests are so
+        rudimentary that it’s no longer worth having them around. We will
+        introduce a proper browser-based test suite in the short term — it’s a
+        project in progress.
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Akis Kesoglou
+      nested: []
+  version: 1.18.0
+  title: ""
+  date: 2023-02-14T18:07:05.870Z
+- commits:
+    - subject: Update to Electron 17 and Node 16
+      hash: 3c1dd6ce29ddf43ef35e58236d25713fa2026c10
+      body: |
+        This is the latest Electron version officially supported by Spectron.
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Akis Kesoglou
+      nested: []
+  version: 1.17.0
+  title: ""
+  date: 2023-02-14T16:18:54.834Z
+- commits:
+    - subject: Update to Electron 14
+      hash: df7854111a901b620e3284edf10768d308ce7755
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Akis Kesoglou
+      nested: []
+  version: 1.16.0
+  title: ""
+  date: 2023-02-14T12:40:40.820Z
+- commits:
+    - subject: "patch: app: i18n: Translation: Update zh-TW strings * Improve
+        translate. * Sync layout with English strings ts file."
+      hash: b51418814f5ef48d09e3157c92bda5eab173dbd5
+      body: ""
+      footer:
+        Signed-off-by: Edward Wu <bluehome.wu@gmail.com>
+        signed-off-by: Edward Wu <bluehome.wu@gmail.com>
+      author: Edward Wu
+      nested: []
+  version: 1.15.6
+  title: ""
+  date: 2023-02-13T11:23:13.079Z
+- commits:
+    - subject: revert auto-update feature
+      hash: e6d33eda2b8f767679a43f8056e20098b0f2f6d9
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: JOASSART Edwin
+      nested: []
+  version: 1.15.5
+  title: ""
+  date: 2023-02-03T14:25:19.611Z
+- commits:
+    - subject: Switch to `@electron/remote`
+      hash: 7ee174edcecbfc2d7370db6d4185b3ee4eedbe28
+      body: >
+        Electron 12 deprecated `electron.remote` and the functionality was
+        removed in Electron 14, but became available as a separate
+        `@electron/remote` module. This commit makes the transition to the
+        external module as an intermediary step to enable updating to a newer
+        Electron version.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Akis Kesoglou
+      nested: []
+  version: 1.15.4
+  title: ""
+  date: 2023-02-02T18:26:45.877Z
+- commits:
+    - subject: move EFP & success-banner to efp.balena.io
+      hash: a140faaebe087a96387604f12c3510ee22374d92
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Edwin Joassart
+      nested: []
+  version: 1.15.3
+  title: ""
+  date: 2023-02-02T17:23:16.454Z
+- commits:
+    - subject: Remove configuration remote update
+      hash: 85a49a221fa7fc9b1943dc8ed43b29995f9d8260
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Edwin Joassart
+      nested: []
+  version: 1.15.2
+  title: ""
+  date: 2023-02-02T13:05:01.310Z
+- commits:
+    - subject: Remove redundant resinci-deploy build step
+      hash: 48ddafd120cc9cd4fb94c0d6f7530a14be46f28d
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Akis Kesoglou
+      nested: []
+    - subject: Lazily import Electron from child-writer process
+      hash: 851219f835ed037d9fd970f538095e4b339c5342
+      body: >
+        No idea how this *used* to work, but it doesn’t since 887ec428 and this
+        is fixing it properly.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Akis Kesoglou
+      nested: []
+  version: 1.15.1
+  title: ""
+  date: 2023-02-01T12:18:55.922Z
+- commits:
+    - subject: Add support for Node 18
+      hash: 887ec42847acbd4a935b4e9ed6abb2b8d87058ce
+      body: >
+        The Electron version we’re currently using is on Node 14 but this is a
+        step forward to upgrading to a newer Electron and Node version.
+
+
+        Updates etcher-sdk and switches the redundant aws4-axios dependency to
+        just axios.
+
+
+        Also changed bundler to stop trying to bundle wasm files — they must be
+        included inline with JS code as data — and removed some now redundant
+        code.
+
+
+        The crucial changes that enable support are:
+
+
+        1. The update to etcher-sdk@8 where some dependency fixes and updates
+        took place
+
+        2. The downgrade and pinning of "electron-rebuild" to v3.2.3 until we’re
+        able to update to Electron >= 14.2. The patch we need to avoid is
+        https://github.com/electron/rebuild/pull/907. Also see:
+        https://github.com/nodejs/node-gyp/issues/2673 and
+        https://github.com/electron/rebuild/issues/913
+
+        3. A rule in webpack.config to ignore `aws-crt` which is a dependency of
+        (ultimately) `aws4-axios` which is used by etcher-sdk and does a runtime
+        check to its availability. We’re not currently using the “assume role”
+        functionality (AFAIU) of aws4-axios and we don’t care that it’s not
+        found, so force webpack to ignore the import. See
+        https://github.com/aws/aws-sdk-js-v3/issues/3025
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Akis Kesoglou
+      nested: []
+  version: 1.15.0
+  title: ""
+  date: 2023-01-27T11:36:32.980Z
+- commits:
+    - subject: "patch: fixed mac sudo on other languages"
+      hash: 19d1e093fc2b1588492c9868f7604ee15ab3fd5b
+      body: ""
+      footer: {}
+      author: Peter Makra
+      nested: []
+  version: 1.14.3
+  title: ""
+  date: 2023-01-19T12:21:02.651Z
+- commits:
+    - subject: "patch: revert to lockfile v1"
+      hash: 72af77860bee3685635c9f4db602c2a07e825037
+      body: ""
+      footer: {}
+      author: Peter Makra
+      nested: []
+    - subject: "patch: update etcher-sdk for cm4v5"
+      hash: 8e63be2efecada2ad6abd9d9d7728859e2c30ebc
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: builder555
+      nested: []
+  version: 1.14.2
+  title: ""
+  date: 2023-01-17T14:37:41.555Z
+- commits:
+    - subject: fix disabled-screensaver unhandled exception outside balena-electron env
+      hash: 46c406e8c1e3b5e41890aff7f65b1711e4426782
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Edwin Joassart
+      nested: []
+  version: 1.14.1
+  title: ""
+  date: 2023-01-16T13:22:36.972Z
+- commits:
+    - subject: Anonymizes all paths before sending
+      hash: 86d43a536f7c9aa6b450a9f2f90341e07364208e
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Otávio Jacobi
+      nested: []
+    - subject: "patch: Sentry fix path"
+      hash: 6c417e35a13873cd95d25f42a819de3750cdf65d
+      body: ""
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+    - subject: Remove personal path on etcher
+      hash: 2b728d3c521b76177a2c019b4891627272f35aac
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Otávio Jacobi
+      nested: []
+    - subject: Unifying sentry reports in a single project
+      hash: f3f7ecb852503d4d97dbe6a78bf920ca177bddd1
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Edwin Joassart
+      nested: []
+    - subject: Removes corvus in favor of sentry and analytics client
+      hash: 41fca03c98d4a72bd8c3842d7e6b9d41f65336f9
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Otavio Jacobi
+        signed-off-by: Otavio Jacobi
+      author: Otávio Jacobi
+      nested: []
+    - subject: Removes corvus in favor of sentry and analytics client
+      hash: 10caf8f1b6a174762192b13ce7bb4eaa71e90fcc
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Otavio Jacobi
+        signed-off-by: Otavio Jacobi
+      author: Otávio Jacobi
+      nested: []
+  version: 1.14.0
+  title: ""
+  date: 2023-01-16T11:23:54.866Z
+- commits:
+    - subject: Adding EtcherPro device serial number to the Settings modal
+      hash: d25eda9a7d6bf89284b630b2d55cbb0a7e3a9432
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Aurelien VALADE
+      nested: []
+  version: 1.13.4
+  title: ""
+  date: 2023-01-12T15:10:50.328Z
+- commits:
+    - subject: "patch: progress cm4 to second stage"
+      hash: 2475d576c7d9ecb46507c47c4143bdbfbdb44e45
+      body: ""
+      footer: {}
+      author: Peter Makra
+      nested: []
+  version: 1.13.3
+  title: ""
+  date: 2023-01-11T14:30:45.116Z
+- commits:
+    - subject: "patch: fixed winget parameter name"
+      hash: 33fe4b2c1abcb7f71f42a4b682f174422cb72a00
+      body: ""
+      footer: {}
+      author: mcraa
+      nested: []
+  version: 1.13.2
+  title: ""
+  date: 2023-01-02T20:55:58.179Z
+- commits:
+    - subject: "patch: updated sdk to fix bz2 issue"
+      hash: f79cb0fac56f6ec86f3a6f9be7035fbf59102253
+      body: ""
+      footer: {}
+      author: Peter Makra
+      nested: []
+    - subject: "patch: update copyright in electron-builder"
+      hash: ec42892c7cf1d22f4bb2968733ba9dc85e3552c6
+      body: ""
+      footer: {}
+      author: JOASSART Edwin
+      nested: []
+  version: 1.13.1
+  title: ""
+  date: 2023-01-02T17:26:55.602Z
+- commits:
+    - subject: "minor: electron version bump"
+      hash: e3072ac416470cd161309935c2622cc5a3d8d242
+      body: ""
+      footer: {}
+      author: Peter Makra
+      nested: []
+    - subject: "patch: handle ext2fs with webpack"
+      hash: b59b171e43a170c0ccf84d36ab4ba2db403e25c5
+      body: ""
+      footer: {}
+      author: Peter Makra
+      nested: []
+    - subject: "Patch: update etcher-sdk version to fix CM4 issues"
+      hash: 36c813714b3ce60e5e85f1889c9bc7eeadb524b4
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: builder555
+      nested: []
+  version: 1.13.0
+  title: ""
+  date: 2022-12-28T16:48:12.506Z
+- commits:
+    - subject: Update dependency i18next to 21.10.0
+      hash: b068b847c7ae6456ebd16a5d641ff61d8d074015
+      body: |
+        Update i18next to 21.10.0
+
+        Update i18next from 21.8.14 to 21.10.0
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.12.7
+  title: ""
+  date: 2022-12-20T19:35:11.219Z
+- commits:
+    - subject: Update dependency react-i18next to 11.18.6
+      hash: 2e85fb45de3a52e9bf0605e474a550e1af2bb980
+      body: |
+        Update react-i18next to 11.18.6
+
+        Update react-i18next from 11.18.1 to 11.18.6
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.12.6
+  title: ""
+  date: 2022-12-20T18:00:03.165Z
+- commits:
+    - subject: "Patch: made trim setting more readable"
+      hash: 5c5a7612220b011e6942ac10b7026b7d6513e54f
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: builder555
+      nested: []
+  version: 1.12.5
+  title: ""
+  date: 2022-12-20T12:27:33.706Z
+- commits:
+    - subject: "patch: publish to winget with gh action"
+      hash: f9c8378d6a96e1c44d0bced0d3227a9930b9fd14
+      body: ""
+      footer: {}
+      author: Begula
+      nested: []
+  version: 1.12.4
+  title: ""
+  date: 2022-12-19T19:41:59.151Z
+- commits:
+    - subject: "Patch: replaced plain text with i18n in settings"
+      hash: 11cea7c926be1bac27df8ab583cbb4b8752a49c5
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: builder555
+      nested: []
+  version: 1.12.3
+  title: ""
+  date: 2022-12-19T09:51:52.545Z
+- commits:
+    - subject: Update dependency webpack-dev-server to 4.11.1
+      hash: c9e9d7d109ee103402acea1c7be4bac2f674168a
+      body: |
+        Update webpack-dev-server to 4.11.1
+
+        Update webpack-dev-server from 4.5.0 to 4.11.1
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.12.2
+  title: ""
+  date: 2022-12-16T16:59:03.254Z
+- commits:
+    - subject: "Patch: expose trim ext{2,3,4} setting"
+      hash: b9a82be29bee61a41f6f6a5ca6043dd8a7bee547
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: builder555
+      nested: []
+  version: 1.12.1
+  title: ""
+  date: 2022-12-16T15:02:34.104Z
+- commits:
+    - subject: i18n support and Chinese translation
+      hash: 8fc574f0596f256382523c3b269e647a9aed5747
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: ab77
+      nested: []
+    - subject: "minor: optimize i18n"
+      hash: 67d26ff7902c272e8113c9b650382a1dcb0cdde0
+      body: >
+        Optimized several translations.
+
+        This commit itself is only a patch, but as a pull request must have at
+        least one commit with a change-type.
+      footer:
+        Change-Type: minor
+        change-type: minor
+      author: r-q
+      nested: []
+  version: 1.12.0
+  title: ""
+  date: 2022-12-14T16:17:31.131Z
+- commits:
+    - subject: Update dependency webpack-cli to 4.10.0
+      hash: 757aa77d897d6266afbf6e7d62ddd0255ea0c926
+      body: |
+        Update webpack-cli to 4.10.0
+
+        Update webpack-cli from 4.2.0 to 4.10.0
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.11.10
+  title: ""
+  date: 2022-12-13T02:27:41.593Z
+- commits:
+    - subject: Update dependency webpack to 5.75.0
+      hash: cd67b442c9c55adddb2d8def456d7155af1f23c6
+      body: |
+        Update webpack to 5.75.0
+
+        Update webpack from 5.11.0 to 5.75.0
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.11.9
+  title: ""
+  date: 2022-12-12T23:58:09.807Z
+- commits:
+    - subject: Update dependency awscli to 1.27.28
+      hash: 927a026b869e0da872e17a662536d0ad3aeeae0f
+      body: |
+        Update awscli to 1.27.28
+
+        Update awscli from 1.27.27 to 1.27.28
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.11.8
+  title: ""
+  date: 2022-12-12T21:55:28.620Z
+- commits:
+    - subject: Update dependency uuid to 8.3.2
+      hash: c9cfb87733a694a69044a3b04cb12e72047a92da
+      body: |
+        Update uuid to 8.3.2
+
+        Update uuid from 8.1.0 to 8.3.2
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.11.7
+  title: ""
+  date: 2022-12-12T19:57:31.379Z
+- commits:
+    - subject: Update dependency tslib to 2.4.1
+      hash: f0747abe3fde8df4a004573a3ffd49134dd6d40d
+      body: |
+        Update tslib to 2.4.1
+
+        Update tslib from 2.0.0 to 2.4.1
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+    - subject: "Patch: run linux build on ubuntu-20.04"
+      hash: adcd8e0325bc891460b3e51aa5403f8675189f13
+      body: |-
+        as [`18.04` has been removed](https://github.blog/changelog/2022-08-09-github-actions-the-ubuntu-18-04-actions-runner-image-is-being-deprecated-and-will-be-removed-by-12-1-22/)
+
+        We cannot use `latest` as the glibc version will cause issue with older ubuntu version.
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 1.11.6
+  title: ""
+  date: 2022-12-12T17:59:43.391Z
+- commits:
+    - subject: Update dependency ts-loader to 8.4.0
+      hash: 5ae9a263619e9bb499705ee7c19df5707ea3936c
+      body: |
+        Update ts-loader to 8.4.0
+
+        Update ts-loader from 8.0.12 to 8.4.0
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.11.5
+  title: ""
+  date: 2022-12-10T12:28:18.918Z
+- commits:
+    - subject: Update dependency styled-components to 5.3.6
+      hash: 88c5fa50352efe76a6506ee763915f504889111b
+      body: |
+        Update styled-components to 5.3.6
+
+        Update styled-components from 5.1.0 to 5.3.6
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.11.4
+  title: ""
+  date: 2022-12-10T10:57:10.809Z
+- commits:
+    - subject: Update dependency terser-webpack-plugin to 5.3.6
+      hash: c431222909ef49126549c0f630cf1f3f3f8895ed
+      body: |
+        Update terser-webpack-plugin to 5.3.6
+
+        Update terser-webpack-plugin from 5.2.5 to 5.3.6
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.11.3
+  title: ""
+  date: 2022-12-10T08:54:53.274Z
+- commits:
+    - subject: Update dependency string-replace-loader to 3.1.0
+      hash: 33f8851083d50ed2db2b1308d1f1cf8749751db5
+      body: |
+        Update string-replace-loader to 3.1.0
+
+        Update string-replace-loader from 3.0.1 to 3.1.0
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.11.2
+  title: ""
+  date: 2022-12-10T07:32:25.553Z
+- commits:
+    - subject: Update dependency sinon to 9.2.4
+      hash: 686a5837b69c26bc83772ed738376ce0a766fef5
+      body: |
+        Update sinon to 9.2.4
+
+        Update sinon from 9.0.2 to 9.2.4
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.11.1
+  title: ""
+  date: 2022-12-10T06:19:30.932Z
+- commits:
+    - subject: Update dependency shyaml to 0.6.2
+      hash: 2acad790d3e85b3215e692705691fff4fadb99b0
+      body: |
+        Update shyaml to 0.6.2
+
+        Update shyaml from 0.5.0 to 0.6.2
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 1.11.0
+  title: ""
+  date: 2022-12-10T04:27:19.119Z
+- commits:
+    - subject: Update dependency awscli to 1.27.27
+      hash: 17858a7d72dc001419bf75ac04b1a66b782404e2
+      body: |
+        Update awscli to 1.27.27
+
+        Update awscli from 1.27.26 to 1.27.27
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.10.29
+  title: ""
+  date: 2022-12-10T03:05:02.826Z
+- commits:
+    - subject: Update dependency rendition to 19.3.2
+      hash: 0d740ad12dbadcb35d0e2076821a073177476acb
+      body: |
+        Update rendition to 19.3.2
+
+        Update rendition from 19.2.0 to 19.3.2
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested:
+        - commits:
+            - subject: Add Breadcrumbs component export
+              hash: fbe0da641ae76ed99185f5799f94653bbed52609
+              body: |
+                add breadcrumbs component export
+              footer:
+                Change-type: patch
+                change-type: patch
+                Signed-off-by: Andrea Rosci <andrear@balena.io>
+                signed-off-by: Andrea Rosci <andrear@balena.io>
+              author: JSReds
+          version: rendition-19.3.2
+          date: 2020-12-29T17:27:09.528Z
+        - commits:
+            - subject: Fix max-width on breadcrumbs container
+              hash: b7c4ab7bed3caa1c10130f50abb582fcf63d867e
+              body: |
+                fix max-width on breadcrumbs container
+              footer:
+                Change-type: patch
+                change-type: patch
+                Signed-off-by: Andrea Rosci <andrear@balena.io>
+                signed-off-by: Andrea Rosci <andrear@balena.io>
+              author: JSReds
+          version: rendition-19.3.1
+          date: 2020-12-29T13:35:01.615Z
+        - commits:
+            - subject: Add Breadcrumbs component
+              hash: 41a7abb3724a6c8a0a839d4083ce36ceaeeb9d91
+              body: |
+                Add Breadcrumbs component and generate snapshots
+              footer:
+                Change-type: minor
+                change-type: minor
+                Signed-off-by: Andrea Rosci <andrear@balena.io>
+                signed-off-by: Andrea Rosci <andrear@balena.io>
+              author: JSReds
+          version: rendition-19.3.0
+          date: 2020-12-29T12:12:16.944Z
+  version: 1.10.28
+  title: ""
+  date: 2022-12-10T02:10:41.368Z
+- commits:
+    - subject: Update dependency redux to 4.2.0
+      hash: 85c183b9ef2dbe798c6d5cd8bce6367ef31e2624
+      body: |
+        Update redux to 4.2.0
+
+        Update redux from 4.0.5 to 4.2.0
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.10.27
+  title: ""
+  date: 2022-12-09T20:59:24.075Z
+- commits:
+    - subject: Update dependency pretty-bytes to 5.6.0
+      hash: d8b2a7a2369f24b1390bd85eca3cfbcd8282df80
+      body: |
+        Update pretty-bytes to 5.6.0
+
+        Update pretty-bytes from 5.3.0 to 5.6.0
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.10.26
+  title: ""
+  date: 2022-12-09T18:58:21.970Z
+- commits:
+    - subject: Update dependency pnp-webpack-plugin to 1.7.0
+      hash: 86bb093f3d7eec4835060789cc725e172223c74f
+      body: |
+        Update pnp-webpack-plugin to 1.7.0
+
+        Update pnp-webpack-plugin from 1.6.4 to 1.7.0
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.10.25
+  title: ""
+  date: 2022-12-09T17:01:52.897Z
+- commits:
+    - subject: Update dependency node-ipc to 9.2.1
+      hash: f26b0748114c7623f152e00b065f3e6ec0657e83
+      body: |
+        Update node-ipc to 9.2.1
+
+        Update node-ipc from 9.1.1 to 9.2.1
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.10.24
+  title: ""
+  date: 2022-12-09T14:59:54.907Z
+- commits:
+    - subject: Update dependency mocha to 8.4.0
+      hash: be190c6c802f0cb6f5f68981b255aa4e620db2f7
+      body: |
+        Update mocha to 8.4.0
+
+        Update mocha from 8.0.1 to 8.4.0
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.10.23
+  title: ""
+  date: 2022-12-09T13:05:52.859Z
+- commits:
+    - subject: Update dependency mini-css-extract-plugin to 1.6.2
+      hash: d35f3c30498e3a8d8b8eb74a50952489f1c629fc
+      body: |
+        Update mini-css-extract-plugin to 1.6.2
+
+        Update mini-css-extract-plugin from 1.3.3 to 1.6.2
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.10.22
+  title: ""
+  date: 2022-12-09T10:57:43.780Z
+- commits:
+    - subject: Update dependency lint-staged to 10.5.4
+      hash: 54e6c5e2c137073e6229fa28726d8f6b08853fcc
+      body: |
+        Update lint-staged to 10.5.4
+
+        Update lint-staged from 10.2.2 to 10.5.4
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.10.21
+  title: ""
+  date: 2022-12-09T08:57:59.766Z
+- commits:
+    - subject: Update dependency husky to 4.3.8
+      hash: cf8b5790a1e9cf853328f128f9c52d72d5ac1da5
+      body: |
+        Update husky to 4.3.8
+
+        Update husky from 4.2.5 to 4.3.8
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.10.20
+  title: ""
+  date: 2022-12-09T06:59:31.264Z
+- commits:
+    - subject: Update dependency esbuild-loader to 2.20.0
+      hash: ba812b4f6484f0803486f7c1969992030267ae12
+      body: |
+        Update esbuild-loader to 2.20.0
+
+        Update esbuild-loader from 2.16.0 to 2.20.0
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.10.19
+  title: ""
+  date: 2022-12-09T04:58:48.480Z
+- commits:
+    - subject: Update dependency electron-updater to 4.6.5
+      hash: 32011c0deab646af1c4d99c15418f336f1dc02f1
+      body: |
+        Update electron-updater to 4.6.5
+
+        Update electron-updater from 4.3.5 to 4.6.5
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.10.18
+  title: ""
+  date: 2022-12-09T03:07:57.710Z
+- commits:
+    - subject: Update dependency electron-notarize to 1.2.2
+      hash: d68eab1dda78e17ce3804e6c7f08940b36f377a8
+      body: |
+        Update electron-notarize to 1.2.2
+
+        Update electron-notarize from 1.0.0 to 1.2.2
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.10.17
+  title: ""
+  date: 2022-12-09T01:21:25.322Z
+- commits:
+    - subject: Update dependency awscli to 1.27.26
+      hash: b5ab500a14396525cb6c7bac4eabf0b4b1c7cb11
+      body: |
+        Update awscli to 1.27.26
+
+        Update awscli from 1.27.25 to 1.27.26
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.10.16
+  title: ""
+  date: 2022-12-08T22:58:41.740Z
+- commits:
+    - subject: Update dependency electron-builder to 22.14.13
+      hash: 99862b95a55a3a7a174763d635073bab5dbc704f
+      body: |
+        Update electron-builder to 22.14.13
+
+        Update electron-builder from 22.10.5 to 22.14.13
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.10.15
+  title: ""
+  date: 2022-12-08T21:37:01.110Z
+- commits:
+    - subject: Update dependency debug to 4.3.4
+      hash: b8af86e30c9ce3b8d9eba8749f2aeba1f6eea197
+      body: |
+        Update debug to 4.3.4
+
+        Update debug from 4.2.0 to 4.3.4
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.10.14
+  title: ""
+  date: 2022-12-08T19:55:06.173Z
+- commits:
+    - subject: Update dependency awscli to 1.27.25
+      hash: 0667d1110fbc05ef7222530ea413a1db7a2bd814
+      body: |
+        Update awscli to 1.27.25
+
+        Update awscli from 1.27.24 to 1.27.25
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.10.13
+  title: ""
+  date: 2022-12-08T17:57:06.474Z
+- commits:
+    - subject: Update dependency css-loader to 5.2.7
+      hash: 6991a4950bfb2b7c9ad93df4c76170003b7d47f0
+      body: |
+        Update css-loader to 5.2.7
+
+        Update css-loader from 5.0.1 to 5.2.7
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.10.12
+  title: ""
+  date: 2022-12-08T15:56:12.526Z
+- commits:
+    - subject: Update dependency awscli to 1.27.24
+      hash: 72b4d4f4fa5a013d9a808402660186a92b165bc7
+      body: |
+        Update awscli to 1.27.24
+
+        Update awscli from 1.27.5 to 1.27.24
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.10.11
+  title: ""
+  date: 2022-12-07T03:21:58.354Z
+- commits:
+    - subject: Update dependency @types/node to 14.18.34
+      hash: aa3756ad172e939dff88ad213fda2b57966341c6
+      body: |
+        Update @types/node to 14.18.34
+
+        Update @types/node from 14.18.33 to 14.18.34
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.10.10
+  title: ""
+  date: 2022-12-07T02:19:17.414Z
+- commits:
+    - subject: Enable repository configuration
+      hash: 0d5bb4935f860a5b7f58810fce8084dc8f82dd65
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: ab77
+      nested: []
+  version: 1.10.9
+  title: ""
+  date: 2022-12-06T23:59:21.301Z
+- commits:
+    - subject: Update dependency chai to 4.3.7
+      hash: 4ed30027162365a68f26264f7574ac9eaf752926
+      body: |
+        Update chai to 4.3.7
+
+        Update chai from 4.2.0 to 4.3.7
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.10.8
+  title: ""
+  date: 2022-12-05T21:38:41.964Z
+- commits:
+    - subject: Use core workflow for GitHub publish
+      hash: f3844d56e2bb317e9360f34f5054c91eb0fb8910
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: ab77
+      nested: []
+  version: 1.10.7
+  title: ""
+  date: 2022-12-05T19:39:07.247Z
+- commits:
+    - subject: Dummy update to fix asset version issue
+      hash: 03d6a011db5fd4dad3d25fde86cf2b434c8192e8
+      body: |
+        Due to a race between two patch, 1.10.5 assets are labelled 1.10.3.
+        This dummy PR should fix this.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Edwin Joassart
+      nested: []
+  version: 1.10.6
+  title: ""
+  date: 2022-12-02T14:04:57.766Z
+- commits:
+    - subject: "Patch: run linux build on ubuntu-18.04"
+      hash: 57a6ceff0e28d06063679a7a8b14671416ba46c5
+      body: >-
+        Running on ubuntu-latest means you need a more recent version of glibc
+        which breaks on older ubuntu.
+
+
+        Thanks to @theofficialgman for suggesting the fix.
+      footer: {}
+      author: Edwin Joassart
+      nested: []
+  version: 1.10.5
+  title: ""
+  date: 2022-12-02T12:41:19.841Z
+- commits:
+    - subject: "patch: remove Homebrew instructions in README"
+      hash: 0d1cfffa5c7c084d9f48d60c1abbf7e2974abb28
+      body: |
+        Homebrew no longer supports etcher, so removing install instructions.
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Patrick Linnane
+      nested: []
+  version: 1.10.4
+  title: ""
+  date: 2022-12-01T23:27:55.910Z
+- commits:
+    - subject: Allow external contributors
+      hash: 156b9314b5786e943256974d5344383ae1f0650d
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: ab77
+      nested: []
+  version: 1.10.3
+  title: ""
+  date: 2022-12-01T22:31:25.592Z
+- commits:
+    - subject: Fix missing analytics token
+      hash: 831339bd2cbe73dd441cdd77d85b34e98f68a6a6
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Edwin Joassart edwin.joassart@balena.io
+        signed-off-by: Edwin Joassart edwin.joassart@balena.io
+      author: Edwin Joassart
+      nested: []
+  version: 1.10.2
+  title: ""
+  date: 2022-11-25T19:22:49.679Z
+- commits:
+    - subject: Fixing call to electron block screensaver methods invocation
+      hash: 1b5b64713505dfb69448bc2184839b4c23bd677b
+      body: >
+        Replacing `send` calls to `invoke` for `enable/disable-screensaver`
+        calls.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Aurelien VALADE <aurelien.valade@balena.io>
+        signed-off-by: Aurelien VALADE <aurelien.valade@balena.io>
+      author: Aurelien VALADE
+      nested: []
+  version: 1.10.1
+  title: ""
+  date: 2022-11-21T16:50:14.797Z
+- commits:
+    - subject: testing renovate
+      hash: 306e087ec6daed9e736a8918cde07159dd9298dc
+      body: ""
+      footer:
+        Change-Type: minor
+        change-type: minor
+      author: builder555
+      nested: []
+  version: 1.10.0
+  title: ""
+  date: 2022-11-10T20:54:12.345Z
+- commits:
+    - subject: Update dependency awscli to 1.27.5
+      hash: 26dc2d19e56354b0f43c9af2f1d6dd51a4a0b235
+      body: |
+        Update awscli to 1.27.5
+
+        Update awscli from 1.11.87 to 1.27.5
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 1.9.0
+  title: ""
+  date: 2022-11-08T21:37:25.500Z
+- commits:
+    - subject: Update dependency @types/react-dom to 16.9.17
+      hash: 448ce141d51ec342e95148f265daf0fc73df694c
+      body: |
+        Update @types/react-dom to 16.9.17
+
+        Update @types/react-dom from 16.8.4 to 16.9.17
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.8.17
+  title: ""
+  date: 2022-11-08T20:38:27.629Z
+- commits:
+    - subject: Update dependency @types/react to 16.14.34
+      hash: 77b33b127dcfb0345e0ff80c80b2f560984c14b1
+      body: |
+        Update @types/react to 16.14.34
+
+        Update @types/react from 16.8.5 to 16.14.34
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.8.16
+  title: ""
+  date: 2022-11-08T19:39:42.616Z
+- commits:
+    - subject: "CI: generalise artefact handling"
+      hash: e3618b939e119b8ae6d0dcea0f4077fe2c332122
+      body: |
+        * on PR syncs, delete draft releases on Linux runners only
+        * delete draft releases when unmerged PRs are closed
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: ab77
+      nested: []
+  version: 1.8.15
+  title: ""
+  date: 2022-11-08T18:21:04.227Z
+- commits:
+    - subject: Update dependency @types/node to 14.18.33
+      hash: 7e2c2eae635e6d9aef1e65b158268400074ff020
+      body: |
+        Update @types/node to 14.18.33
+
+        Update @types/node from 14.14.41 to 14.18.33
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.8.14
+  title: ""
+  date: 2022-11-08T13:57:18.149Z
+- commits:
+    - subject: Update dependency @types/copy-webpack-plugin to 6.4.3
+      hash: 2c2a5c7c2b31d188cc32024dd6f9b5d0d1a5bc8b
+      body: |
+        Update @types/copy-webpack-plugin to 6.4.3
+
+        Update @types/copy-webpack-plugin from 6.0.0 to 6.4.3
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.8.13
+  title: ""
+  date: 2022-11-08T12:39:27.293Z
+- commits:
+    - subject: Update dependency @fortawesome/fontawesome-free to 5.15.4
+      hash: 7bb52aa1706b4bfe06cdd023f4f95bf8de1a6666
+      body: |
+        Update @fortawesome/fontawesome-free to 5.15.4
+
+        Update @fortawesome/fontawesome-free from 5.13.1 to 5.15.4
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.8.12
+  title: ""
+  date: 2022-11-08T11:33:01.286Z
+- commits:
+    - subject: Update dependency @balena/lint to 5.4.2
+      hash: cc0285a77db78a014b73169cc8a6b2429961f41f
+      body: |
+        Update @balena/lint to 5.4.2
+
+        Update @balena/lint from 5.3.0 to 5.4.2
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.8.11
+  title: ""
+  date: 2022-11-08T10:38:47.026Z
+- commits:
+    - subject: Update dependency sys-class-rgb-led to 3.0.1
+      hash: 0e58edf1139b16b26335f7b6f7b2e6f92c8c8838
+      body: |
+        Update sys-class-rgb-led to 3.0.1
+
+        Update sys-class-rgb-led from 3.0.0 to 3.0.1
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested:
+        - commits:
+            - subject: "patch: Delete Codeowners"
+              hash: 91e33b39ac7c55b1186887b20703e3298f37751c
+              body: ""
+              footer: {}
+              author: Vipul Gupta
+          version: sys-class-rgb-led-3.0.1
+          date: 2021-07-01T10:53:00.610Z
+  version: 1.8.10
+  title: ""
+  date: 2022-11-08T09:35:02.677Z
+- commits:
+    - subject: Update dependency semver to 7.3.8
+      hash: 8357cc19d258103bc66061467ac984b1adae6456
+      body: |
+        Update semver to 7.3.8
+
+        Update semver from 7.3.2 to 7.3.8
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.8.9
+  title: ""
+  date: 2022-11-08T08:40:21.355Z
+- commits:
+    - subject: Update dependency omit-deep-lodash to 1.1.7
+      hash: a4f944e7959431f24b55c44dbcde2b13530cf902
+      body: |
+        Update omit-deep-lodash to 1.1.7
+
+        Update omit-deep-lodash from 1.1.4 to 1.1.7
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.8.8
+  title: ""
+  date: 2022-11-08T07:33:36.421Z
+- commits:
+    - subject: Update dependency immutable to 3.8.2
+      hash: 330df325f9b2eb855c6213f91cdb0d4cf1439525
+      body: |
+        Update immutable to 3.8.2
+
+        Update immutable from 3.8.1 to 3.8.2
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.8.7
+  title: ""
+  date: 2022-11-08T06:19:12.271Z
+- commits:
+    - subject: Update dependency electron-rebuild to 3.2.9
+      hash: 3dc54405feebce319bb29933f9bad52621067f0a
+      body: |
+        Update electron-rebuild to 3.2.9
+
+        Update electron-rebuild from 3.2.5 to 3.2.9
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.8.6
+  title: ""
+  date: 2022-11-08T05:18:29.447Z
+- commits:
+    - subject: Update dependency electron-mocha to 9.3.3
+      hash: 1b93891ed805d2a091a3d4eaff6a00a498de6eaa
+      body: |
+        Update electron-mocha to 9.3.3
+
+        Update electron-mocha from 9.3.2 to 9.3.3
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.8.5
+  title: ""
+  date: 2022-11-08T04:22:23.418Z
+- commits:
+    - subject: Update dependency @types/webpack-node-externals to 2.5.3
+      hash: ea5a167f4f3eb81a177ebd5c9c3def2e38a65f37
+      body: |
+        Update @types/webpack-node-externals to 2.5.3
+
+        Update @types/webpack-node-externals from 2.5.0 to 2.5.3
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.8.4
+  title: ""
+  date: 2022-11-08T02:41:36.635Z
+- commits:
+    - subject: Update dependency @types/tmp to 0.2.3
+      hash: 98a5ddf58ad762d46d532310100513834c6d68b5
+      body: |
+        Update @types/tmp to 0.2.3
+
+        Update @types/tmp from 0.2.0 to 0.2.3
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.8.3
+  title: ""
+  date: 2022-11-08T01:36:34.632Z
+- commits:
+    - subject: Generate release notes with git
+      hash: a61aa8e2bec57281655eb1c89c956fd5d42d3fc5
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: ab77
+      nested: []
+  version: 1.8.2
+  title: ""
+  date: 2022-11-08T00:19:25.825Z
+- commits:
+    - subject: Update dependency @types/mime-types to 2.1.1
+      hash: fe09f9f862d2eef79a237986c50e587b232d9c2d
+      body: |
+        Update @types/mime-types to 2.1.1
+
+        Update @types/mime-types from 2.1.0 to 2.1.1
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.8.1
+  title: ""
+  date: 2022-11-07T23:35:26.671Z
+- commits:
+    - subject: Update scripts/resin digest to 652fdd4
+      hash: 16422971012d77dc928c9d99c3db6b1a58cd52be
+      body: |
+        Update scripts/resin to
+
+        Update scripts/resin from  to
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Renovate Bot
+      nested: []
+  version: 1.8.0
+  title: ""
+  date: 2022-11-07T22:27:03.928Z
+- commits:
+    - subject: Build targets individually
+      hash: b58249b9c833763ec80402820b2c93c01fafda22
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: ab77
+      nested: []
+  version: 1.7.15
+  title: ""
+  date: 2022-11-07T21:36:35.993Z
+- commits:
+    - subject: Update dependency lodash to 4.17.21 [SECURITY]
+      hash: f356e4c303080eefdf74f52c2b4de227d20e4e49
+      body: |
+        Update lodash to 4.17.21
+
+        Update lodash from 4.17.10 to 4.17.21
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 1.7.14
+  title: ""
+  date: 2022-11-07T20:17:53.572Z
+- commits:
+    - subject: Update release notes on finalize
+      hash: 576113febfe000339545c0fd55793aafd2e53abb
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: ab77
+      nested: []
+  version: 1.7.13
+  title: ""
+  date: 2022-11-07T19:17:06.571Z
+- commits:
+    - subject: Avoid duplicate releases
+      hash: 33dea6267fbcc3cd47b1744830731c853ebbba18
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: ab77
+      nested: []
+  version: 1.7.12
+  title: ""
+  date: 2022-11-07T18:32:19.617Z
+- commits:
+    - subject: Only run finalize on Linux runners
+      hash: 9ab307df4f4f617adac33c6a36f492229050bb0e
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: ab77
+      nested: []
+  version: 1.7.11
+  title: ""
+  date: 2022-11-07T17:32:25.787Z
+- commits:
+    - subject: Switch to Flowzone
+      hash: 2e53feb38cd548bd2fe68957797bffe66b832eaf
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: ab77
+      nested: []
+  version: 1.7.10
+  title: ""
+  date: 2022-11-07T15:59:41.308Z
+- commits:
     - subject: "patch: update allowed extensions to include deb afterinstall in build"
       hash: 61610ded842caba47c6a682afcb08aa0fda4e86b
       body: ""
@@ -594,7 +2919,8 @@
         reloads without reloading the whole electron app.
 
 
-        This patch also runs the development environment in development mode, which is much, much faster on builds and rebuilds.
+        This patch also runs the development environment in development mode,
+        which is much, much faster on builds and rebuilds.
       footer: {}
       author: Zane Hitchcox
       nested: []
@@ -999,9 +3325,11 @@
                         exception
                           aborting program, because WCharToUtf8() returned NULL
                           in some cases, and NULL was being fed to string constructor.
-                        - Fixes memory leak because memory allocated with calloc()
+                        - Fixes memory leak because memory allocated with
+                        calloc()
                           in WCharToUtf8() was not being freed anywhere
-                        - Fixes undefined behavior because GetEnumeratorName() returns
+                        - Fixes undefined behavior because GetEnumeratorName()
+                        returns
                           pointer to stack memory, that goes outside of scope while
                           pointer still is being used.
 
@@ -2923,7 +5251,8 @@
 
         Although it's possible to use a PC keyboard on a Mac, it's unusual.
 
-        In any case, all of the macOS (not "Mac OS" for some years now) documentation refers to the "Opt" key.
+        In any case, all of the macOS (not "Mac OS" for some years now)
+        documentation refers to the "Opt" key.
     - hash: ea11f179542794294f773f503d83dad3a10cda56
       author: Tom
       footers:
@@ -3087,7 +5416,8 @@
         Changes the documentation to update the disktutil command which didn't
         fix my case, cause the boot partition was broken.
 
-        This way it rewrites the drive into a FAT32 partition editable in Unix/Windows.
+        This way it rewrites the drive into a FAT32 partition editable in
+        Unix/Windows.
     - hash: b3f25c176b1bdb487d1a7bf111d7f170fe008842
       author: Lorenzo Alberto Maria Ambrosi
       footers:
@@ -5787,7 +8117,8 @@
 
         performance improvement
 
-        - Make Breadcrumbs and Icon pure components to stop frequent re-rendering
+        - Make Breadcrumbs and Icon pure components to stop frequent
+        re-rendering
 
         - Initial support for array constraints
 
@@ -5918,9 +8249,11 @@
 
         the `ETCHER_EXPERIMENTAL_FILE_PICKER` environment variable. Further
 
-        customisation can be done with the `ETCHER_FILE_BROWSER_CONSTRAIN_FOLDER`
+        customisation can be done with the
+        `ETCHER_FILE_BROWSER_CONSTRAIN_FOLDER`
 
-        variable that takes a path and allows one to constrain the file-picker to
+        variable that takes a path and allows one to constrain the file-picker
+        to
 
         a folder.
     - hash: 687e0b563b0dc3619ece4ce49d353d5838a21ff6
@@ -6019,11 +8352,13 @@
 
         either in the user's home directory, or the current working directory.
 
-        In the case of the home directory, the config file is `$HOME/.config/etcher/config.json`,
+        In the case of the home directory, the config file is
+        `$HOME/.config/etcher/config.json`,
 
         while on Windows `$HOME/.etcher.json` is used.
 
-        The defined settings are merged with localStorage settings, and preceding
+        The defined settings are merged with localStorage settings, and
+        preceding
 
         configuration files.
 
@@ -6313,7 +8648,8 @@
         `_.isError()` returns `true` for anything that has a `name` and
         `message`
 
-        property, causing the check here to always keep the plain object as error.
+        property, causing the check here to always keep the plain object as
+        error.
     - hash: 355373f24df6be0989fad9429c2230166b33a3bf
       author: Jonas Hermsmeier
       footers:
@@ -6330,7 +8666,8 @@
         This fixes a ReferenceError that could occur when the DeviceNode was
         null,
 
-        as well as devices being null when run after the system recovers from sleep / standby.
+        as well as devices being null when run after the system recovers from
+        sleep / standby.
     - hash: 6e7484d3dabc2aeaa7cd471822d7019860cc4a5c
       author: Benedict Aas
       subject: "feat(GUI): display succeeded and failed devices on finish screen"
@@ -6491,7 +8828,8 @@
       body: >-
         This replaces shelling out to `diskpart` on Windows to clear
 
-        the partition table with `win-drive-clean`, which does so via DeviceIoControl.
+        the partition table with `win-drive-clean`, which does so via
+        DeviceIoControl.
     - hash: abf2dc3efcf214a68c0b0e329d57a3f66bb5d342
       author: Benedict Aas
       footers:
@@ -6598,15 +8936,18 @@
         This updates the instructions to open the Developer Tools in the issue
         template,
 
-        as the keyboard shortcuts have changed to their defaults on Linux & Windows
+        as the keyboard shortcuts have changed to their defaults on Linux &
+        Windows
 
         from [Ctrl]+[Alt]+[I] to [Ctrl]+[Shift]+[I].
 
-        Further, the editor config is updated to allow trailing spaces in Markdown
+        Further, the editor config is updated to allow trailing spaces in
+        Markdown
 
         files to add trailing spaces to the list items in the issue template, in
 
-        order to avoid people not putting whitespace in between, causing the formatting
+        order to avoid people not putting whitespace in between, causing the
+        formatting
 
         to not be parsed properly.
     - hash: 3dd646485fa34437ac3adb3caa5a594d439f1f68
@@ -6690,7 +9031,8 @@
         This replaces use of `electron.app.getName()` with the package.json's
         `.displayName`
 
-        property to ensure the correct application name is displayed when packaged.
+        property to ensure the correct application name is displayed when
+        packaged.
     - hash: cf340f48c3582f3e96f7b2dc16c11f44b7661363
       author: Jonas Hermsmeier
       footers:
@@ -6866,7 +9208,8 @@
       body: >-
         This updates `resin-cli-visuals` in order to fix drive selection in
 
-        the CLI, which was caused by incompatibility of two different `drivelist` versions
+        the CLI, which was caused by incompatibility of two different
+        `drivelist` versions
     - hash: bde1e32e29ae75ccecf7fc3bc1b03efd6e4f67b8
       author: Jonas Hermsmeier
       footers:
@@ -7167,7 +9510,8 @@
         We remove a piece of code checking whether `_.keys` returns any
         non-string
 
-        values in its array, but per the Lodash documentation `_.keys` always returns an
+        values in its array, but per the Lodash documentation `_.keys` always
+        returns an
 
         array of strings.
     - hash: 83528df18be32bfe62d3e9e4578101077769a7cf
@@ -7423,7 +9767,8 @@
       body: >-
         Due to some Windows systems missing certain C runtime libraries
 
-        (Visual C/C++ 2012 / 2015 Redistributables), we ignore errors when loading
+        (Visual C/C++ 2012 / 2015 Redistributables), we ignore errors when
+        loading
 
         this module until we can ensure distribution of those along with it.
     - hash: 21e595466d5d950d7c38b2411791f756ec6ebdca
@@ -7508,7 +9853,8 @@
       body: >-
         This updates the `postshrinkwrap` script to traverse the dependency tree
 
-        and remove all `from` fields to avoid inconsistent diffs across platforms,
+        and remove all `from` fields to avoid inconsistent diffs across
+        platforms,
 
         environments and installs when shrinkwrapping anew.
     - hash: 619051a4b0cd8995e31838f221386b9b44e6ffc8
@@ -7920,7 +10266,8 @@
         This works around the "Cannot fetch index base URL
         http://pypi.python.org/simple/"
 
-        error by installing pip==9.0.1 directly from the pypi.python.org/packages/
+        error by installing pip==9.0.1 directly from the
+        pypi.python.org/packages/
     - hash: c8b2b652354029cedceda2637bed13fee65f8587
       author: Juan Cruz Viotti
       footers:
@@ -7972,9 +10319,11 @@
 
         WARNING: Binary file: lib/blobs/usbboot/raspberrypi/bootcode.bin
 
-        WARNING: Binary file: tests/image-stream/data/unrecognized/xz-without-extension
+        WARNING: Binary file:
+        tests/image-stream/data/unrecognized/xz-without-extension
 
-        WARNING: Binary file: tests/image-stream/data/unrecognized/xz-with-invalid-extension.foo
+        WARNING: Binary file:
+        tests/image-stream/data/unrecognized/xz-with-invalid-extension.foo
 
         ```
     - hash: f4e0121639d8f2cbcc15b6577ec15d7ecbab7e71
@@ -9707,7 +12056,8 @@
 
         https://developer.apple.com/library/mac/technotes/tn2206/_index.html
 
-        > Code signing uses extended attributes to store signatures in non-Mach-O
+        > Code signing uses extended attributes to store signatures in
+        non-Mach-O
 
         > executables such as script files. If the extended attributes are lost
 
@@ -9719,7 +12069,8 @@
 
         > One way to guarantee preservation of extended attributes is by packing
 
-        > up your signed code in a read-write disk image (DMG) file before signing
+        > up your signed code in a read-write disk image (DMG) file before
+        signing
 
         > and then, after signing, converting to read-only. You probably don't
 
@@ -9782,31 +12133,19 @@
         changelog-entry: Don't include user paths in Mixpanel usage reports
         link: https://github.com/resin-io-modules/etcher-image-stream/blob/master/CHANGELOG.md
       subject: Fix uncaught exception if no file was selected from a dialog
-      body: >-
+      body: |-
         The following error is thrown if the open file dialog is cancelled
-
         without any selection:
-
         Unhandled rejection TypeError: Cannot read property '0' of undefined
-
         at Number.indexedGetter (/home/parallels/Projects/etcher/node_modules/bluebird/js/release/call_get.js:106:15)
-
         at Number.tryCatcher (/home/parallels/Projects/etcher/node_modules/bluebird/js/release/util.js:16:23)
-
         at Promise._settlePromiseFromHandler (/home/parallels/Projects/etcher/node_modules/bluebird/js/release/promise.js:503:31)
-
         at Promise._settlePromise (/home/parallels/Projects/etcher/node_modules/bluebird/js/release/promise.js:560:18)
-
         at Promise._settlePromise0 (/home/parallels/Projects/etcher/node_modules/bluebird/js/release/promise.js:605:10)
-
         at Promise._settlePromises (/home/parallels/Projects/etcher/node_modules/bluebird/js/release/promise.js:684:18)
-
         at Async._drainQueue (/home/parallels/Projects/etcher/node_modules/bluebird/js/release/async.js:126:16)
-
         at Async._drainQueues (/home/parallels/Projects/etcher/node_modules/bluebird/js/release/async.js:136:10)
-
         at Immediate.Async.drainQueues [as _onImmediate] (/home/parallels/Projects/etcher/node_modules/bluebird/js/release/async.js:16:14)
-
         at processImmediate [as _immediateCallback] (timers.js:383:17)
     - hash: 6bd086f1c5c6654a47125cf2d46788655cae2553
       author: Juan Cruz Viotti
@@ -9821,7 +12160,8 @@
       body: >-
         From the documentation:
 
-        > `useContentSize` Boolean - The `width` and `height` would be used as web
+        > `useContentSize` Boolean - The `width` and `height` would be used as
+        web
 
         > page’s size, which means the actual window’s size will include window
 
@@ -10402,21 +12742,14 @@
         changelog-entry: Use info icon instead of "SHOW FULL FILE NAME" in first step.
         fixes: https://github.com/resin-io/etcher/issues/458
       subject: Make use of AppImage desktop integration script
-      body: >-
+      body: |-
         This is useful to prompt the user to install the `.desktop` file.
-
         The `Description` key in `Etcher.desktop` was changed to `Comment` since
-
         `desktop-file-validate` complained with:
-
         Etcher.desktop: error: file contains key "Description" in group "Desktop
-
         Entry", but keys extending the format should start with "X-"
-
         After checking the desktop file format specification, the correct key
-
         should be "Comment"
-
         (https://specifications.freedesktop.org/desktop-entry-spec/latest/ar01s05.html).
     - hash: c3e360e61933ef0044c005b5e92c879ff9a47c49
       author: Juan Cruz Viotti
@@ -10629,15 +12962,11 @@
         changelog-entry: Fix flashing never starting after elevation in GNU/Linux.
         fixes: https://github.com/resin-io/etcher/issues/665
       subject: Make all angular modules export the name of the module
-      body: >-
+      body: |-
         This makes them very nicely require-able, for example:
-
         angular.module('MyModule', [
-
         require('my-dependency');
-
         ]);
-
         From https://medium.com/@kentcdodds/how-to-distribute-your-angularjs-module-e04d4dd58ddc#.yqg2zo8im
     - hash: b8f63af3f81bca3abd055303bc91ab35eb126655
       author: Juan Cruz Viotti
@@ -10890,7 +13219,8 @@
       body: >-
         Electron no longer supports 10.8.
 
-        See http://electron.atom.io/docs/v0.37.5/tutorial/supported-platforms/#os-x
+        See
+        http://electron.atom.io/docs/v0.37.5/tutorial/supported-platforms/#os-x
     - hash: 097c9a4aa37029154c3efe8564edbeef048926ad
       author: Juan Cruz Viotti
       subject: Add subtle hover styling to footer links

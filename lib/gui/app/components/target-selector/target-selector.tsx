@@ -17,12 +17,9 @@
 import * as React from 'react';
 import { Flex, Txt } from 'rendition';
 
+import type { DriveSelectorProps } from '../drive-selector/drive-selector';
+import { DriveSelector } from '../drive-selector/drive-selector';
 import {
-	DriveSelector,
-	DriveSelectorProps,
-} from '../drive-selector/drive-selector';
-import {
-	isDriveSelected,
 	getImage,
 	getSelectedDrives,
 	deselectDrive,
@@ -30,13 +27,13 @@ import {
 	deselectAllDrives,
 } from '../../models/selection-state';
 import { observe } from '../../models/store';
-import * as analytics from '../../modules/analytics';
 import { TargetSelectorButton } from './target-selector-button';
 
 import TgtSvg from '../../../assets/tgt.svg';
 import DriveSvg from '../../../assets/drive.svg';
 import { warning } from '../../../../shared/messages';
-import { DrivelistDrive } from '../../../../shared/drive-constraints';
+import type { DrivelistDrive } from '../../../../shared/drive-constraints';
+import * as i18next from 'i18next';
 
 export const getDriveListLabel = () => {
 	return getSelectedDrives()
@@ -60,8 +57,8 @@ export const TargetSelectorModal = (
 ) => (
 	<DriveSelector
 		multipleSelection={true}
-		titleLabel="Select target"
-		emptyListLabel="Plug a target drive"
+		titleLabel={i18next.t('target.selectTarget')}
+		emptyListLabel={i18next.t('target.plugTarget')}
 		emptyListIcon={<TgtSvg width="40px" />}
 		showWarnings={true}
 		selectedList={getSelectedDrives()}
@@ -78,21 +75,10 @@ export const selectAllTargets = (modalTargets: DrivelistDrive[]) => {
 	);
 	// deselect drives
 	deselected.forEach((drive) => {
-		analytics.logEvent('Toggle drive', {
-			drive,
-			previouslySelected: true,
-		});
 		deselectDrive(drive.device);
 	});
 	// select drives
 	modalTargets.forEach((drive) => {
-		// Don't send events for drives that were already selected
-		if (!isDriveSelected(drive.device)) {
-			analytics.logEvent('Toggle drive', {
-				drive,
-				previouslySelected: false,
-			});
-		}
 		selectDrive(drive.device);
 	});
 };
@@ -101,12 +87,14 @@ interface TargetSelectorProps {
 	disabled: boolean;
 	hasDrive: boolean;
 	flashing: boolean;
+	hideAnalyticsAlert: () => void;
 }
 
 export const TargetSelector = ({
 	disabled,
 	hasDrive,
 	flashing,
+	hideAnalyticsAlert,
 }: TargetSelectorProps) => {
 	// TODO: inject these from redux-connector
 	const [{ driveListLabel, targets }, setStateSlice] = React.useState(
@@ -138,9 +126,9 @@ export const TargetSelector = ({
 				tooltip={driveListLabel}
 				openDriveSelector={() => {
 					setShowTargetSelectorModal(true);
+					hideAnalyticsAlert();
 				}}
 				reselectDrive={() => {
-					analytics.logEvent('Reselect drive');
 					setShowTargetSelectorModal(true);
 				}}
 				flashing={flashing}

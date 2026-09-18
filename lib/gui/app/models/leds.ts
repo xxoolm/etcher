@@ -15,12 +15,11 @@
  */
 
 import * as _ from 'lodash';
-import { Animator, AnimationFunction, Color, RGBLed } from 'sys-class-rgb-led';
+import type { AnimationFunction, Color } from 'sys-class-rgb-led';
+import { Animator, RGBLed } from 'sys-class-rgb-led';
 
-import {
-	DrivelistDrive,
-	isSourceDrive,
-} from '../../../shared/drive-constraints';
+import type { DrivelistDrive } from '../../../shared/drive-constraints';
+import { isSourceDrive } from '../../../shared/drive-constraints';
 import { getDrives } from './available-drives';
 import { getSelectedDrives } from './selection-state';
 import * as settings from './settings';
@@ -43,7 +42,7 @@ function blink(t: number) {
 	return Math.floor(t) % 2;
 }
 
-function one(_t: number) {
+function one() {
 	return 1;
 }
 

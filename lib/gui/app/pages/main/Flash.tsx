@@ -27,7 +27,6 @@ import * as availableDrives from '../../models/available-drives';
 import * as flashState from '../../models/flash-state';
 import * as selection from '../../models/selection-state';
 import * as analytics from '../../modules/analytics';
-import { scanner as driveScanner } from '../../modules/drive-scanner';
 import * as imageWriter from '../../modules/image-writer';
 import * as notification from '../../os/notification';
 import {
@@ -37,6 +36,7 @@ import {
 
 import FlashSvg from '../../../assets/flash.svg';
 import DriveStatusWarningModal from '../../components/drive-status-warning-modal/drive-status-warning-modal';
+import * as i18next from 'i18next';
 
 const COMPLETED_PERCENTAGE = 100;
 const SPEED_PRECISION = 2;
@@ -94,10 +94,6 @@ async function flashImageToDrive(
 		return '';
 	}
 
-	// Stop scanning drives when flashing
-	// otherwise Windows throws EPERM
-	driveScanner.stop();
-
 	const iconPath = path.join('media', 'icon.png');
 	const basename = path.basename(image.path);
 	try {
@@ -109,7 +105,7 @@ async function flashImageToDrive(
 				cancelled,
 			} = flashState.getFlashResults();
 			if (!skip && !cancelled) {
-				if (results.devices.successful > 0) {
+				if (results?.devices?.successful > 0) {
 					notifySuccess(iconPath, basename, drives, results.devices);
 				} else {
 					notifyFailure(iconPath, basename, drives);
@@ -128,7 +124,6 @@ async function flashImageToDrive(
 		return errorMessage;
 	} finally {
 		availableDrives.setDrives([]);
-		driveScanner.start();
 	}
 
 	return '';
@@ -203,9 +198,7 @@ export class FlashStep extends React.PureComponent<
 	private handleFlashErrorResponse(shouldRetry: boolean) {
 		this.setState({ errorMessage: '' });
 		flashState.resetState();
-		if (shouldRetry) {
-			analytics.logEvent('Restart after failure');
-		} else {
+		if (!shouldRetry) {
 			selection.clear();
 		}
 	}
@@ -293,9 +286,17 @@ export class FlashStep extends React.PureComponent<
 								color="#7e8085"
 								width="100%"
 							>
-								<Txt>{this.props.speed.toFixed(SPEED_PRECISION)} MB/s</Txt>
+								<Txt>
+									{i18next.t('flash.speedShort', {
+										speed: this.props.speed.toFixed(SPEED_PRECISION),
+									})}
+								</Txt>
 								{!_.isNil(this.props.eta) && (
-									<Txt>ETA: {formatSeconds(this.props.eta)}</Txt>
+									<Txt>
+										{i18next.t('flash.eta', {
+											eta: formatSeconds(this.props.eta),
+										})}
+									</Txt>
 								)}
 							</Flex>
 						)}

@@ -3,6 +3,789 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+# v2.1.7
+## (2026-09-18)
+
+* patch: macos hardening [Edwin Joassart]
+* patch: fix copyright [Edwin Joassart]
+
+# v2.1.6
+## (2026-05-13)
+
+* Fix MacOS x86 build by switching to the macos-14-large GH runner [Thodoris Greasidis]
+
+# v2.1.5
+## (2026-05-07)
+
+* Replace the EOL macos-13 test runners with macos-14 [Thodoris Greasidis]
+* Add libgdk-pixbuf dependency alternatives to fix Ubuntu 26.04 installation [Thodoris Greasidis]
+
+# v2.1.4
+## (2025-07-29)
+
+* patch: fix ubuntu 24 build and flash issues - bump electron-forge to 7.8.1 - bump electron to 37.2.4 - stop producing broken appimage [Edwin Joassart]
+* patch: fix windows build and flash issues - downgrade flasher's node to 20.11.1 on windows - bump windows GHA runner to 2022 - bump winusb-driver-generator to 2.1.9 [Edwin Joassart]
+* patch: refactor permission code [Edwin Joassart]
+
+# v2.1.3
+## (2025-05-15)
+
+* Remove stale secrets [Anton Belodedenko]
+
+# v2.1.2
+## (2025-05-08)
+
+* patch: remove analytics [Edwin Joassart]
+
+# v2.1.1
+## (2025-05-05)
+
+* patch: fix signin windows artifacts [Edwin Joassart]
+
+# v2.1.0
+## (2025-02-27)
+
+* Add informational notice about how to disable analytics collection [myarmolinsky]
+
+# v2.0.0
+## (2025-02-20)
+
+* major: build on ubuntu 22 and macos 13 [Edwin Joassart]
+
+# v1.19.25
+## (2024-10-10)
+
+* patch: bump etcher-sdk to 9.1.2 [Edwin Joassart]
+
+# v1.19.24
+## (2024-10-09)
+
+* patch: etcher-util is corrupted in RPM package [Richard Glidden]
+
+# v1.19.23
+## (2024-10-09)
+
+* patch: remove gconf2 libgconf-2-4 deps [Marc-Aurèle Brothier]
+
+# v1.19.22
+## (2024-07-18)
+
+* Replace deprecated Flowzone inputs [Kyle Harding]
+
+# v1.19.21
+## (2024-05-30)
+
+* patch: fix missing windows dependency [Edwin Joassart]
+* patch: fix missing windows dependency [Edwin Joassart]
+* patch: fix missing windows dependency [Edwin Joassart]
+
+# v1.19.20
+## (2024-05-30)
+
+* patch: fix missing windows dependency [Edwin Joassart]
+
+# v1.19.19
+## (2024-05-28)
+
+* patch: add sentry debug flag [Edwin Joassart]
+
+# v1.19.18
+## (2024-05-22)
+
+* patch: fix Sentry DSN for main process [Edwin Joassart]
+
+# v1.19.17
+## (2024-05-09)
+
+* patch: fix injection of analytics key at build time [JOASSART Edwin]
+
+# v1.19.16
+## (2024-04-26)
+
+* patch: hold request for metadata while waiting for flasher [Edwin Joassart]
+
+# v1.19.15
+## (2024-04-26)
+
+* patch: bump etcher-sdk to 9.0.11 to fix url loading using http/2 [Edwin Joassart]
+
+# v1.19.14
+## (2024-04-25)
+
+* patch: pretty-bytes to 6.1.1 [JOASSART Edwin]
+
+# v1.19.13
+## (2024-04-25)
+
+* patch: use etcher icon as loading for windows installer [Edwin Joassart]
+* patch: fix windows squirrel install [Edwin Joassart]
+
+# v1.19.12
+## (2024-04-25)
+
+* patch: bump minors & patch [Edwin Joassart]
+* patch: bump @electron-forge/* to 7.4.0 [Edwin Joassart]
+* patch: bump electron to 30.0.1 & @electron/remote to 2.1.2 [Edwin Joassart]
+* patch: npm upgrade [Edwin Joassart]
+* patch: bump @balena/lint to 8.0.2 and fix formating [Edwin Joassart]
+* patch: fix pretty-bytes imports [Edwin Joassart]
+* patch: bump etcher-sdk to 9.0.9 [Edwin Joassart]
+
+# v1.19.11
+## (2024-04-25)
+
+* patch: setup wdio and port (most) tests [Edwin Joassart]
+
+# v1.19.10
+## (2024-04-23)
+
+* patch: remove node-ipc and tests [Edwin Joassart]
+* patch: switch api; use ws; integrate sudo-prompt - switch api roles flow - use websocket instead of node-ipc - integrate; modernize; simplify and deprecate sudo-prompt [Edwin Joassart]
+* patch: refactor api to use a single topic [Edwin Joassart]
+* patch: set require node engine to 20 [Edwin Joassart]
+
+# v1.19.9
+## (2024-04-22)
+
+* patch: prevent rebuild of native deps by @electron/rebuild [Edwin Joassart]
+
+# v1.19.8
+## (2024-04-22)
+
+* patch: replace deprecated pkg with yao-pkg and bump etcher-util node v to 20.10 [Edwin Joassart]
+
+# v1.19.7
+## (2024-04-22)
+
+* patch: fix formating [Edwin Joassart]
+* patch: configure prettier in the project to use balena-lint configuration [Edwin Joassart]
+
+# v1.19.6
+## (2024-04-19)
+
+* patch: fix win signature process [Edwin Joassart]
+
+# v1.19.5
+## (2024-02-14)
+
+* Replace deprecated flowzone input tests_run_on [Kyle Harding]
+
+# v1.19.4
+## (2024-01-26)
+
+* patch: remove screensaver error when not on etcher-pro [Edwin Joassart]
+* patch: fix typo in IPC server id [Edwin Joassart]
+
+# v1.19.3
+## (2023-12-22)
+
+* Update dependencies [Edwin Joassart]
+
+# v1.19.2
+## (2023-12-22)
+
+* fix: typos [Rotzbua]
+
+# v1.19.1
+## (2023-12-22)
+
+* patch: update winget-releaser v2 [Vedant]
+
+# v1.19.0
+## (2023-12-21)
+
+* Use native ARM runner for Apple Silicon builds [Akis Kesoglou]
+* Calculate and upload build artifact sha256 checksums [Akis Kesoglou]
+* Migrate build pipeline to Electron Forge [Akis Kesoglou]
+
+# v1.18.14
+## (2023-12-20)
+
+* Remove repo config from flowzone.yml [Kyle Harding]
+* Update actions/upload-artifact to v4 [Kyle Harding]
+
+# v1.18.13
+## (2023-10-16)
+
+* patch: upgrade to electron 25 [Edwin Joassart]
+* patch: refactor scanner, loader and flasher out of gui + upgrade to electron 25 [Edwin Joassart]
+
+# v1.18.12
+## (2023-07-19)
+
+* Update instructions for installing deb file [Jorge Capona]
+
+# v1.18.11
+## (2023-07-13)
+
+* fix: prevent stealing window focus from auth dialog [leadpogrommer]
+
+# v1.18.10
+## (2023-07-12)
+
+* spelling: validates [Josh Soref]
+* spelling: undefined [Josh Soref]
+* spelling: except if [Josh Soref]
+
+# v1.18.9
+## (2023-07-12)
+
+* Fix opening links from within SafeWebView [Akis Kesoglou]
+
+# v1.18.8
+## (2023-04-26)
+
+* Patch: Fix Support link [Oliver Plummer]
+
+# v1.18.7
+## (2023-04-25)
+
+* patch: update docs to remove cloudsmith install instructions for linux [Edwin Joassart]
+
+# v1.18.6
+## (2023-03-21)
+
+* add-flash-with-etcher-to-docs [Lizzie Epton]
+
+# v1.18.5
+## (2023-03-09)
+
+* patch: add apt-get update in flowzone preinstall [Edwin Joassart]
+
+# v1.18.4
+## (2023-03-02)
+
+* patch: bump etcher-sdk to 8.3.1 [JOASSART Edwin]
+
+# v1.18.3
+## (2023-02-22)
+
+* fix-typo [Lizzie Epton]
+* edits-to-info-about-efp [Lizzie Epton]
+* Add reference to etcher-efp in publishing.md [Edwin Joassart]
+
+# v1.18.2
+## (2023-02-21)
+
+* patch: organize docs [mcraa]
+* patch: actualized develop guide [mcraa]
+* patch: updated commit message guide [mcraa]
+* add-item-from-FAQs [Lizzie Epton]
+* patch: removed gt characters from contributing guide [mcraa]
+* patch: added docosaurus site name [mcraa]
+
+# v1.18.1
+## (2023-02-15)
+
+* patch: use @electron/remote for locating rpiboot files [mcraa]
+
+# v1.18.0
+## (2023-02-14)
+
+* Update to Electron 19 [Akis Kesoglou]
+* Remove Spectron and related (low-value) tests [Akis Kesoglou]
+
+# v1.17.0
+## (2023-02-14)
+
+* Update to Electron 17 and Node 16 [Akis Kesoglou]
+
+# v1.16.0
+## (2023-02-14)
+
+* Update to Electron 14 [Akis Kesoglou]
+
+# v1.15.6
+## (2023-02-13)
+
+* patch: app: i18n: Translation: Update zh-TW strings * Improve translate. * Sync layout with English strings ts file. [Edward Wu]
+
+# v1.15.5
+## (2023-02-03)
+
+* revert auto-update feature [JOASSART Edwin]
+
+# v1.15.4
+## (2023-02-02)
+
+* Switch to `@electron/remote` [Akis Kesoglou]
+
+# v1.15.3
+## (2023-02-02)
+
+* move EFP & success-banner to efp.balena.io [Edwin Joassart]
+
+# v1.15.2
+## (2023-02-02)
+
+* Remove configuration remote update [Edwin Joassart]
+
+# v1.15.1
+## (2023-02-01)
+
+* Remove redundant resinci-deploy build step [Akis Kesoglou]
+* Lazily import Electron from child-writer process [Akis Kesoglou]
+
+# v1.15.0
+## (2023-01-27)
+
+* Add support for Node 18 [Akis Kesoglou]
+
+# v1.14.3
+## (2023-01-19)
+
+* patch: fixed mac sudo on other languages [Peter Makra]
+
+# v1.14.2
+## (2023-01-17)
+
+* patch: revert to lockfile v1 [Peter Makra]
+* patch: update etcher-sdk for cm4v5 [builder555]
+
+# v1.14.1
+## (2023-01-16)
+
+* fix disabled-screensaver unhandled exception outside balena-electron env [Edwin Joassart]
+
+# v1.14.0
+## (2023-01-16)
+
+* Anonymizes all paths before sending [Otávio Jacobi]
+* patch: Sentry fix path [Edwin Joassart]
+* Remove personal path on etcher [Otávio Jacobi]
+* Unifying sentry reports in a single project [Edwin Joassart]
+* Removes corvus in favor of sentry and analytics client [Otávio Jacobi]
+* Removes corvus in favor of sentry and analytics client [Otávio Jacobi]
+
+# v1.13.4
+## (2023-01-12)
+
+* Adding EtcherPro device serial number to the Settings modal [Aurelien VALADE]
+
+# v1.13.3
+## (2023-01-11)
+
+* patch: progress cm4 to second stage [Peter Makra]
+
+# v1.13.2
+## (2023-01-02)
+
+* patch: fixed winget parameter name [mcraa]
+
+# v1.13.1
+## (2023-01-02)
+
+* patch: updated sdk to fix bz2 issue [Peter Makra]
+* patch: update copyright in electron-builder [JOASSART Edwin]
+
+# v1.13.0
+## (2022-12-28)
+
+* minor: electron version bump [Peter Makra]
+* patch: handle ext2fs with webpack [Peter Makra]
+* Patch: update etcher-sdk version to fix CM4 issues [builder555]
+
+# v1.12.7
+## (2022-12-20)
+
+* Update dependency i18next to 21.10.0 [Renovate Bot]
+
+# v1.12.6
+## (2022-12-20)
+
+* Update dependency react-i18next to 11.18.6 [Renovate Bot]
+
+# v1.12.5
+## (2022-12-20)
+
+* Patch: made trim setting more readable [builder555]
+
+# v1.12.4
+## (2022-12-19)
+
+* patch: publish to winget with gh action [Begula]
+
+# v1.12.3
+## (2022-12-19)
+
+* Patch: replaced plain text with i18n in settings [builder555]
+
+# v1.12.2
+## (2022-12-16)
+
+* Update dependency webpack-dev-server to 4.11.1 [Renovate Bot]
+
+# v1.12.1
+## (2022-12-16)
+
+* Patch: expose trim ext{2,3,4} setting [builder555]
+
+# v1.12.0
+## (2022-12-14)
+
+* i18n support and Chinese translation [ab77]
+* minor: optimize i18n [r-q]
+
+# v1.11.10
+## (2022-12-13)
+
+* Update dependency webpack-cli to 4.10.0 [Renovate Bot]
+
+# v1.11.9
+## (2022-12-12)
+
+* Update dependency webpack to 5.75.0 [Renovate Bot]
+
+# v1.11.8
+## (2022-12-12)
+
+* Update dependency awscli to 1.27.28 [Renovate Bot]
+
+# v1.11.7
+## (2022-12-12)
+
+* Update dependency uuid to 8.3.2 [Renovate Bot]
+
+# v1.11.6
+## (2022-12-12)
+
+* Update dependency tslib to 2.4.1 [Renovate Bot]
+* Patch: run linux build on ubuntu-20.04 [Edwin Joassart]
+
+# v1.11.5
+## (2022-12-10)
+
+* Update dependency ts-loader to 8.4.0 [Renovate Bot]
+
+# v1.11.4
+## (2022-12-10)
+
+* Update dependency styled-components to 5.3.6 [Renovate Bot]
+
+# v1.11.3
+## (2022-12-10)
+
+* Update dependency terser-webpack-plugin to 5.3.6 [Renovate Bot]
+
+# v1.11.2
+## (2022-12-10)
+
+* Update dependency string-replace-loader to 3.1.0 [Renovate Bot]
+
+# v1.11.1
+## (2022-12-10)
+
+* Update dependency sinon to 9.2.4 [Renovate Bot]
+
+# v1.11.0
+## (2022-12-10)
+
+* Update dependency shyaml to 0.6.2 [Renovate Bot]
+
+# v1.10.29
+## (2022-12-10)
+
+* Update dependency awscli to 1.27.27 [Renovate Bot]
+
+# v1.10.28
+## (2022-12-10)
+
+
+<details>
+<summary> Update dependency rendition to 19.3.2 [Renovate Bot] </summary>
+
+> ## rendition-19.3.2
+> ### (2020-12-29)
+> 
+> * Add Breadcrumbs component export [JSReds]
+> 
+> ## rendition-19.3.1
+> ### (2020-12-29)
+> 
+> * Fix max-width on breadcrumbs container [JSReds]
+> 
+> ## rendition-19.3.0
+> ### (2020-12-29)
+> 
+> * Add Breadcrumbs component [JSReds]
+> 
+
+</details>
+
+# v1.10.27
+## (2022-12-09)
+
+* Update dependency redux to 4.2.0 [Renovate Bot]
+
+# v1.10.26
+## (2022-12-09)
+
+* Update dependency pretty-bytes to 5.6.0 [Renovate Bot]
+
+# v1.10.25
+## (2022-12-09)
+
+* Update dependency pnp-webpack-plugin to 1.7.0 [Renovate Bot]
+
+# v1.10.24
+## (2022-12-09)
+
+* Update dependency node-ipc to 9.2.1 [Renovate Bot]
+
+# v1.10.23
+## (2022-12-09)
+
+* Update dependency mocha to 8.4.0 [Renovate Bot]
+
+# v1.10.22
+## (2022-12-09)
+
+* Update dependency mini-css-extract-plugin to 1.6.2 [Renovate Bot]
+
+# v1.10.21
+## (2022-12-09)
+
+* Update dependency lint-staged to 10.5.4 [Renovate Bot]
+
+# v1.10.20
+## (2022-12-09)
+
+* Update dependency husky to 4.3.8 [Renovate Bot]
+
+# v1.10.19
+## (2022-12-09)
+
+* Update dependency esbuild-loader to 2.20.0 [Renovate Bot]
+
+# v1.10.18
+## (2022-12-09)
+
+* Update dependency electron-updater to 4.6.5 [Renovate Bot]
+
+# v1.10.17
+## (2022-12-09)
+
+* Update dependency electron-notarize to 1.2.2 [Renovate Bot]
+
+# v1.10.16
+## (2022-12-08)
+
+* Update dependency awscli to 1.27.26 [Renovate Bot]
+
+# v1.10.15
+## (2022-12-08)
+
+* Update dependency electron-builder to 22.14.13 [Renovate Bot]
+
+# v1.10.14
+## (2022-12-08)
+
+* Update dependency debug to 4.3.4 [Renovate Bot]
+
+# v1.10.13
+## (2022-12-08)
+
+* Update dependency awscli to 1.27.25 [Renovate Bot]
+
+# v1.10.12
+## (2022-12-08)
+
+* Update dependency css-loader to 5.2.7 [Renovate Bot]
+
+# v1.10.11
+## (2022-12-07)
+
+* Update dependency awscli to 1.27.24 [Renovate Bot]
+
+# v1.10.10
+## (2022-12-07)
+
+* Update dependency @types/node to 14.18.34 [Renovate Bot]
+
+# v1.10.9
+## (2022-12-06)
+
+* Enable repository configuration [ab77]
+
+# v1.10.8
+## (2022-12-05)
+
+* Update dependency chai to 4.3.7 [Renovate Bot]
+
+# v1.10.7
+## (2022-12-05)
+
+* Use core workflow for GitHub publish [ab77]
+
+# v1.10.6
+## (2022-12-02)
+
+* Dummy update to fix asset version issue [Edwin Joassart]
+
+# v1.10.5
+## (2022-12-02)
+
+* Patch: run linux build on ubuntu-18.04 [Edwin Joassart]
+
+# v1.10.4
+## (2022-12-01)
+
+* patch: remove Homebrew instructions in README [Patrick Linnane]
+
+# v1.10.3
+## (2022-12-01)
+
+* Allow external contributors [ab77]
+
+# v1.10.2
+## (2022-11-25)
+
+* Fix missing analytics token [Edwin Joassart]
+
+# v1.10.1
+## (2022-11-21)
+
+* Fixing call to electron block screensaver methods invocation [Aurelien VALADE]
+
+# v1.10.0
+## (2022-11-10)
+
+* testing renovate [builder555]
+
+# v1.9.0
+## (2022-11-08)
+
+* Update dependency awscli to 1.27.5 [Renovate Bot]
+
+# v1.8.17
+## (2022-11-08)
+
+* Update dependency @types/react-dom to 16.9.17 [Renovate Bot]
+
+# v1.8.16
+## (2022-11-08)
+
+* Update dependency @types/react to 16.14.34 [Renovate Bot]
+
+# v1.8.15
+## (2022-11-08)
+
+* CI: generalise artefact handling [ab77]
+
+# v1.8.14
+## (2022-11-08)
+
+* Update dependency @types/node to 14.18.33 [Renovate Bot]
+
+# v1.8.13
+## (2022-11-08)
+
+* Update dependency @types/copy-webpack-plugin to 6.4.3 [Renovate Bot]
+
+# v1.8.12
+## (2022-11-08)
+
+* Update dependency @fortawesome/fontawesome-free to 5.15.4 [Renovate Bot]
+
+# v1.8.11
+## (2022-11-08)
+
+* Update dependency @balena/lint to 5.4.2 [Renovate Bot]
+
+# v1.8.10
+## (2022-11-08)
+
+
+<details>
+<summary> Update dependency sys-class-rgb-led to 3.0.1 [Renovate Bot] </summary>
+
+> ## sys-class-rgb-led-3.0.1
+> ### (2021-07-01)
+> 
+> * patch: Delete Codeowners [Vipul Gupta]
+> 
+</details>
+
+# v1.8.9
+## (2022-11-08)
+
+* Update dependency semver to 7.3.8 [Renovate Bot]
+
+# v1.8.8
+## (2022-11-08)
+
+* Update dependency omit-deep-lodash to 1.1.7 [Renovate Bot]
+
+# v1.8.7
+## (2022-11-08)
+
+* Update dependency immutable to 3.8.2 [Renovate Bot]
+
+# v1.8.6
+## (2022-11-08)
+
+* Update dependency electron-rebuild to 3.2.9 [Renovate Bot]
+
+# v1.8.5
+## (2022-11-08)
+
+* Update dependency electron-mocha to 9.3.3 [Renovate Bot]
+
+# v1.8.4
+## (2022-11-08)
+
+* Update dependency @types/webpack-node-externals to 2.5.3 [Renovate Bot]
+
+# v1.8.3
+## (2022-11-08)
+
+* Update dependency @types/tmp to 0.2.3 [Renovate Bot]
+
+# v1.8.2
+## (2022-11-08)
+
+* Generate release notes with git [ab77]
+
+# v1.8.1
+## (2022-11-07)
+
+* Update dependency @types/mime-types to 2.1.1 [Renovate Bot]
+
+# v1.8.0
+## (2022-11-07)
+
+* Update scripts/resin digest to 652fdd4 [Renovate Bot]
+
+# v1.7.15
+## (2022-11-07)
+
+* Build targets individually [ab77]
+
+# v1.7.14
+## (2022-11-07)
+
+* Update dependency lodash to 4.17.21 [SECURITY] [Renovate Bot]
+
+# v1.7.13
+## (2022-11-07)
+
+* Update release notes on finalize [ab77]
+
+# v1.7.12
+## (2022-11-07)
+
+* Avoid duplicate releases [ab77]
+
+# v1.7.11
+## (2022-11-07)
+
+* Only run finalize on Linux runners [ab77]
+
+# v1.7.10
+## (2022-11-07)
+
+* Switch to Flowzone [ab77]
+
 # v1.7.9
 ## (2022-04-22)
 

@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-import * as electron from 'electron';
+import * as remote from '@electron/remote';
 
 import { percentageToFloat } from '../../../shared/utils';
-import { FlashState, titleFromFlashState } from '../modules/progress-status';
+import type { FlashState } from '../modules/progress-status';
+import { titleFromFlashState } from '../modules/progress-status';
 
 /**
  * @summary The title of the main window upon program launch
@@ -40,7 +41,7 @@ function getWindowTitle(state?: FlashState) {
  * @description
  * We expose this property to `this` for testability purposes.
  */
-export const currentWindow = electron.remote.getCurrentWindow();
+export const currentWindow = remote.getCurrentWindow();
 
 /**
  * @summary Set operating system window progress

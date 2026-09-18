@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-import { Drive } from 'drivelist';
-import * as _ from 'lodash';
+import type { Drive } from 'drivelist';
+import { isNil } from 'lodash';
 import * as pathIsInside from 'path-is-inside';
 
 import * as messages from './messages';
-import { SourceMetadata } from '../gui/app/components/source-selector/source-selector';
+import type { SourceMetadata } from './typings/source-selector';
 
 /**
  * @summary The default unknown size for things such as images and drives
@@ -210,8 +210,8 @@ export function getDriveImageCompatibilityStatuses(
 		});
 	}
 	if (
-		!_.isNil(drive) &&
-		!_.isNil(drive.size) &&
+		!isNil(drive) &&
+		!isNil(drive.size) &&
 		!isDriveLargeEnough(drive, image)
 	) {
 		statusList.push(statuses.small);
@@ -229,7 +229,7 @@ export function getDriveImageCompatibilityStatuses(
 
 		if (
 			image !== undefined &&
-			!_.isNil(drive) &&
+			!isNil(drive) &&
 			!isDriveSizeRecommended(drive, image)
 		) {
 			statusList.push(statuses.sizeNotRecommended);
